@@ -72,7 +72,7 @@ const NotesApp = ({ location }) => {
 
         const CONFIG_ADD_NEW_NOTE = {
             method: 'post',
-            url: 'http://localhost:3000/notes/add',
+            url: 'https://unnotate-server.herokuapp.com/notes/add',
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -105,7 +105,7 @@ const NotesApp = ({ location }) => {
 
         const CONFIG_DELETE_ACTIVE_NOTE = {
             method: 'post',
-            url: 'http://localhost:3000/notes/delete',
+            url: 'https://unnotate-server.herokuapp.com/notes/delete',
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -181,7 +181,7 @@ const NotesApp = ({ location }) => {
 
         const CONFIG_SAVE_ACTIVE_NOTE = {
             method: 'post',
-            url: 'http://localhost:3000/notes/save_active',
+            url: 'https://unnotate-server.herokuapp.com/notes/save_active',
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -207,7 +207,7 @@ const NotesApp = ({ location }) => {
 
         const CONFIG_LOGOUT = {
             method: 'delete',
-            url: 'http://localhost:3000/logout',
+            url: 'https://unnotate-server.herokuapp.com/logout',
             headers: {
                 'Authorization': `Bearer ${token}`
             },
