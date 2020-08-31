@@ -11,15 +11,7 @@ import {useMediaQuery} from "react-responsive/src";
 
 const NotesApp = ({ location }) => {
 
-    let ENDPOINT;
-
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        ENDPOINT = "http://localhost:5000";
-    } else {
-        ENDPOINT = "https://unnotate-server.herokuapp.com";
-    }
-
-
+    const ENDPOINT = useSelector(state => state.endpoint);
     const [token, setToken] = useState((location.state && location.state.token) || '');
     const addNote = useSelector(state => state.addNote);
     const username = useSelector(state => state.user);

@@ -1,5 +1,6 @@
 
 const initialState = {
+    endpoint: '',
     notes: [],
     updateRequired: false,
     activeNote: {},
@@ -14,6 +15,8 @@ const initialState = {
 
 function rootReducer (state = initialState, action) {
     switch (action.type) {
+        case 'backend/endpoint':
+            return { ...state, endpoint: action.payload };
         case 'notes/fetch':
             return { ...state, notes: action.payload };
         case 'notes/updateRequired':

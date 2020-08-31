@@ -1,6 +1,6 @@
 import "./LogIn.scss";
 import React, {useState} from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -8,15 +8,8 @@ import SideBar from "../SideBar/SideBar";
 
 const LogIn = () => {
 
-    let ENDPOINT;
 
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        ENDPOINT = "http://localhost:5000";
-    } else {
-        ENDPOINT = "https://unnotate-server.herokuapp.com";
-    }
-
-
+    const ENDPOINT = useSelector(state => state.endpoint);
     const [isRegisterForm, setIsRegisterForm] = useState(false);
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
