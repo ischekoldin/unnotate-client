@@ -40,7 +40,7 @@ const LogIn = () => {
         if (isRegisterForm) {
 
             await axios.post(
-                'http://localhost:3000/signup',
+                'https://unnotate-server.herokuapp.com/signup',
                 {
                     name: nameValue,
                     email: emailValue,
@@ -51,7 +51,7 @@ const LogIn = () => {
             setIsRegisterForm(!isRegisterForm);
         } else {
             response = await axios.post(
-                'http://localhost:3000/login',
+                'https://unnotate-server.herokuapp.com/login',
                 {
                     name: nameValue,
                     password: passwordValue
