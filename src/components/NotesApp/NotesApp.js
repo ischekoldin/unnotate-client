@@ -25,7 +25,7 @@ const NotesApp = ({ location }) => {
 
     const CONFIG_FETCH_NOTES = {
         method: 'get',
-        url: 'http://localhost:3000/notes',
+        url: 'https://unnotate-server.herokuapp.com/notes',
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -33,7 +33,7 @@ const NotesApp = ({ location }) => {
 
     const CONFIG_REFRESH_TOKEN = {
         method: 'get',
-        url: 'http://localhost:3000/token',
+        url: 'https://unnotate-server.herokuapp.com/token',
     };
 
 
