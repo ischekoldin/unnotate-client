@@ -9,12 +9,21 @@ import "bootstrap/scss/bootstrap.scss";
 
 import "./assets/custom.scss";
 
+let store;
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 25 });
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 25 });
+
+    store = createStore(rootReducer, composeEnhancers());
+} else {
+    store = createStore(rootReducer);
+}
 
 
-const store = createStore(rootReducer, composeEnhancers());
+
+
+
 
 ReactDOM.render(
     <Provider store={store}>

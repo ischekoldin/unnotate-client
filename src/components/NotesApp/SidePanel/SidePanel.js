@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import "./SIdePanel.css";
@@ -128,41 +128,50 @@ const SidePanel = () => {
 
     let notesToRender = [];
 
-    if (filteredNotes && filteredNotes.length > 0) {
-        notesToRender = filteredNotes;
-    } else if (notes && notes.length > 0) {
-        notesToRender = notes;
-    }
-
-
-    if (notesToRender && notesToRender.length > 0) {
-        // copy state with notes
-        let notesCopy = [...notes];
-
-        sortNotes(notesCopy, sortBy);
-
-
-        let notesCopyDates = [];
-
-        for (let i = 0; i < notesCopy.length; i++) {
-            let previousEntry;
-            let currentEntry;
-            if (i > 0) previousEntry = dateSegmentFormat(notesCopy[i - 1]);
-            currentEntry = dateSegmentFormat(notesCopy[i]);
-            if (i === 0 || previousEntry !== currentEntry) {
-                notesCopyDates.push({
-                    dateSegment: dateSegmentFormat(notesCopy[i])
-                });
-            }
-            notesCopyDates.push({
-                note_created: new Date(notesCopy[i].note_created),
-                entry: notesCopy[i]
-            });
+    useEffect(() => {
+        if (filteredNotes && filteredNotes.length > 0) {
+            console.log('got filtered notes');
+            notesToRender = filteredNotes;
+        } else if (notes && notes.length > 0) {
+            console.log('got notes');
+            notesToRender = notes;
         }
 
-        notesToRender = notesCopyDates;
+        if (notesToRender && notesToRender.length > 0) {
+            // copy state with notes
+            let notesCopy = [...notes];
 
-    }
+            sortNotes(notesCopy, sortBy);
+            console.log('inserting');
+
+
+            let notesCopyDates = [];
+
+            for (let i = 0; i < notesCopy.length; i++) {
+                let previousEntry;
+                let currentEntry;
+                if (i > 0) previousEntry = dateSegmentFormat(notesCopy[i - 1]);
+                currentEntry = dateSegmentFormat(notesCopy[i]);
+                if (i === 0 || previousEntry !== currentEntry) {
+                    notesCopyDates.push({
+                        dateSegment: dateSegmentFormat(notesCopy[i])
+                    });
+                }
+                notesCopyDates.push({
+                    note_created: new Date(notesCopy[i].note_created),
+                    entry: notesCopy[i]
+                });
+            }
+
+
+            notesToRender = notesCopyDates;
+            console.info(filteredNotes);
+            console.info(notesToRender);
+
+        }
+
+    }, [filteredNotes]);
+
 
 
 
