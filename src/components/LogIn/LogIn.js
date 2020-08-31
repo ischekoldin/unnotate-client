@@ -8,6 +8,15 @@ import SideBar from "../SideBar/SideBar";
 
 const LogIn = () => {
 
+    let ENDPOINT;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        ENDPOINT = "http://localhost:5000";
+    } else {
+        ENDPOINT = "https://unnotate-server.herokuapp.com";
+    }
+
+
     const [isRegisterForm, setIsRegisterForm] = useState(false);
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
@@ -40,7 +49,7 @@ const LogIn = () => {
         if (isRegisterForm) {
 
             await axios.post(
-                'https://unnotate-server.herokuapp.com/signup',
+                `${ENDPOINT}/signup`,
                 {
                     name: nameValue,
                     email: emailValue,
@@ -51,7 +60,7 @@ const LogIn = () => {
             setIsRegisterForm(!isRegisterForm);
         } else {
             response = await axios.post(
-                'https://unnotate-server.herokuapp.com/login',
+                `${ENDPOINT}/login`,
                 {
                     name: nameValue,
                     password: passwordValue

@@ -11,6 +11,14 @@ import {useMediaQuery} from "react-responsive/src";
 
 const NotesApp = ({ location }) => {
 
+    let ENDPOINT;
+
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        ENDPOINT = "http://localhost:5000";
+    } else {
+        ENDPOINT = "https://unnotate-server.herokuapp.com";
+    }
+
     const [token, setToken] = useState((location.state && location.state.token) || '');
     const addNote = useSelector(state => state.addNote);
     const username = useSelector(state => state.user);
@@ -25,7 +33,7 @@ const NotesApp = ({ location }) => {
 
     const CONFIG_FETCH_NOTES = {
         method: 'get',
-        url: 'https://unnotate-server.herokuapp.com/notes',
+        url: `${ENDPOINT}/notes`,
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -33,7 +41,7 @@ const NotesApp = ({ location }) => {
 
     const CONFIG_REFRESH_TOKEN = {
         method: 'get',
-        url: 'https://unnotate-server.herokuapp.com/token',
+        url: `${ENDPOINT}/token`,
     };
 
 
@@ -72,7 +80,7 @@ const NotesApp = ({ location }) => {
 
         const CONFIG_ADD_NEW_NOTE = {
             method: 'post',
-            url: 'https://unnotate-server.herokuapp.com/notes/add',
+            url: `${ENDPOINT}/notes/add`,
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -105,7 +113,7 @@ const NotesApp = ({ location }) => {
 
         const CONFIG_DELETE_ACTIVE_NOTE = {
             method: 'post',
-            url: 'https://unnotate-server.herokuapp.com/notes/delete',
+            url: `${ENDPOINT}/notes/delete`,
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -181,7 +189,7 @@ const NotesApp = ({ location }) => {
 
         const CONFIG_SAVE_ACTIVE_NOTE = {
             method: 'post',
-            url: 'https://unnotate-server.herokuapp.com/notes/save_active',
+            url: `${ENDPOINT}/notes/save_active`,
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -207,7 +215,7 @@ const NotesApp = ({ location }) => {
 
         const CONFIG_LOGOUT = {
             method: 'delete',
-            url: 'https://unnotate-server.herokuapp.com/logout',
+            url: `${ENDPOINT}/logout`,
             headers: {
                 'Authorization': `Bearer ${token}`
             },

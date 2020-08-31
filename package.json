@@ -34,7 +34,7 @@
     "redux-thunk": "^2.3.0",
     "string-strip-html": "^4.5.1"
   },
-  "proxy": "https://unnotate-server.herokuapp.com",
+
   "scripts": {
     "devstart": "react-scripts start",
     "start": "serve -s build",
