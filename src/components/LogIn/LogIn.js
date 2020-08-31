@@ -1,0 +1,154 @@
+import "./LogIn.scss";
+import React, {useState} from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+
+import SideBar from "../SideBar/SideBar";
+
+const LogIn = () => {
+
+    const [isRegisterForm, setIsRegisterForm] = useState(false);
+    const [nameValue, setNameValue] = useState('');
+    const [emailValue, setEmailValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
+    const [rememberMeValue, setRememberMeValue] = useState('');
+    let history = useHistory();
+    const dispatch = useDispatch();
+
+
+    const handleChange = (event) => {
+        let inputId = event.target.id;
+        if (inputId === "email") {
+            setEmailValue(event.target.value);
+        } else if (inputId === "password") {
+            setPasswordValue(event.target.value);
+        } else if (inputId === "name") {
+            setNameValue(event.target.value);
+        } else {
+            setRememberMeValue(!rememberMeValue);
+        }
+    };
+
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        let response;
+
+        if (isRegisterForm) {
+
+            await axios.post(
+                'http://localhost:3000/signup',
+                {
+                    name: nameValue,
+                    email: emailValue,
+                    password: passwordValue
+                }
+            );
+
+            setIsRegisterForm(!isRegisterForm);
+        } else {
+            response = await axios.post(
+                'http://localhost:3000/login',
+                {
+                    name: nameValue,
+                    password: passwordValue
+                },
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+
+            dispatch({
+                type: 'user/set',
+                payload: nameValue
+            });
+            history.push({
+                pathname: '/notes',
+                state:
+                {
+                    token: response.data.accessToken,
+                    username: nameValue
+                }
+            });
+        }
+
+    };
+
+
+    return (
+        <div className="container-fluid pl-0">
+            <div className="row h-100 p-0">
+                <div className="col-auto" style={{ width: "2em" }}>
+                    <SideBar />
+                </div>
+
+                <div className="col-auto m-auto">
+                    <div className="card p-3 border border-light align-self-center">
+                        <form className="form card-body" onSubmit={handleSubmit}>
+                            <label>name</label>
+                            <input className="form-control" value={nameValue} onChange={handleChange} id="name" type="text" required />
+                            {!isRegisterForm ? null : <label>email</label>}
+                            {!isRegisterForm ? null : <input className="formInput"
+                                                             value={emailValue}
+                                                             onChange={handleChange}
+                                                             id="email"
+                                                             type="email"
+                                                             required />}
+                            <label>password</label>
+                            <input className="form-control" value={passwordValue} onChange={handleChange} id="password" type="password" required />
+
+                            <div className="rememberMeWrapper">
+                                {!isRegisterForm ? <div id="rememberMeLabel"><label>remember me</label></div> : null}
+                                {!isRegisterForm
+                                    ? <div><input className="formInput formCheckbox"
+                                                  value={rememberMeValue}
+                                                  onChange={handleChange}
+                                                  id="rememberMe"
+                                                  type="checkbox"/></div>
+                                    : null}
+                            </div>
+
+                            <div className="row">
+                                {
+                                    !isRegisterForm
+                                        ? <div className="col-auto">
+                                            <button className="btn btn-primary"
+                                                    onClick={() => setIsRegisterForm(!isRegisterForm)}
+                                                    type="button"
+                                                    id="registerBtn">Register</button>
+                                        </div>
+
+                                        : <div className="col-auto">
+                                            <button className="btn btn-primary"
+                                                    type="submit"
+                                                    id="signUpBtn">Register</button>
+                                        </div>
+
+                                }
+                                {
+                                    !isRegisterForm
+                                        ? <div className="col-auto">
+                                            <button className="btn btn-primary" type="submit" id="signInBtn">
+                                                Log in
+                                            </button>
+                                        </div>
+                                        : <div className="col-auto">
+                                            <button className="btn btn-primary"
+                                                    onClick={() => setIsRegisterForm(!isRegisterForm)}
+                                                    type="button"
+                                                    id="signInBtn">Log in</button>
+                                        </div>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    )
+
+};
+
+export default LogIn;

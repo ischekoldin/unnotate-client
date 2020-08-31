@@ -1,0 +1,69 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.sideBar {
+    width: 3em;
+    background: linear-gradient(#9665fc, #3c2bb0);
+
+}
+
+
+.header h4 {
+    margin: 0.1em 3.5em 0 0;
+    color:white;
+}
+
+.logo {
+    color: white;
+}
+
+.logo span {
+    color: #EDBB00;
+}
+
+#arrowDownIcon {
+    margin-left: 0.5em;
+}
+
+.userMenu {
+    text-align: center;
+    z-index: 55;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 2.8em;
+    left: 3em;
+    background-color: #FCFCFA;
+    width: auto;
+    height: auto;
+    border: 1px solid rgba(165, 169, 177, 0.5);
+    border-radius: 6px;
+    box-shadow: rgba(165, 169, 177, 0.7) 0 0 20px 0;
+}
+
+.userMenuButton {
+    cursor: pointer;
+}
+
+.userMenu :not(:last-child) {
+    border-bottom: 1px solid rgba(165, 169, 177, 0.5);
+}
+
+.userMenuEntry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5em 0.5em 1.5em;
+    margin: 0.5em 0 0.1em 0;
+    cursor: pointer;
+}
+
+.menuIcon {
+    height: 1.5em; width: 1.5em;
+    margin-left: 0.9em;
+}

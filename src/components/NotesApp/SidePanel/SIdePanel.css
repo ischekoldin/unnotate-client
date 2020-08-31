@@ -1,0 +1,88 @@
+/*.sidePanel {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    width: 20%;*/
+/*    height: 100%;*/
+/*    background-color: rgb(220, 232, 226);*/
+/*    border-color: rgba(140, 144, 152, 0.2);*/
+/*}*/
+
+/*.notesSearchWrapper {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    border-bottom: 1px solid rgba(158, 129, 65, 0.78);*/
+/*    padding: 0.5em 0 0.67em 0;*/
+/*}*/
+
+.sidePanel {
+    width: 19em;
+    background: #f9fafe;
+}
+
+.notesSearch {
+    font-size: 1.1em;
+    padding: 0;
+    margin: 0 0.5em 0 0.5em;
+    height: 2.5rem;
+    border: none;
+    background: transparent;
+}
+
+/*.notesSearchNotesIcon {*/
+/*    margin-left: 0.5em;*/
+/*}*/
+
+.notesSearch::placeholder {
+    color: rgba(56, 58, 56, 0.88);
+}
+
+.notesSearch:focus {
+    outline: none;
+}
+
+
+.sidePanelNoteWrapper {
+    width: 100%;
+}
+
+.sidePanelNote {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*padding: 1em 0 0 1.7em;*/
+    background: transparent;
+}
+
+.date-day {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.date-day-of-week {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.active {
+    background-color: #ffffff;
+}
+
+.noteTitle {
+    font-weight: 600;
+}
+
+
+.noteSecondRowWrapper {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(158, 129, 65, 0.78);
+    padding-bottom: 0.9em;
+}
+
+.sidePanel .noteModified {
+    margin-right: 0.5em;
+}
+
+.sidePanel .noteText {
+    color: rgba(56, 58, 56, 0.88);
+    word-break: break-word;
+}
