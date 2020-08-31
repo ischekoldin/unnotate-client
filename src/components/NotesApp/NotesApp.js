@@ -19,6 +19,7 @@ const NotesApp = ({ location }) => {
         ENDPOINT = "https://unnotate-server.herokuapp.com";
     }
 
+
     const [token, setToken] = useState((location.state && location.state.token) || '');
     const addNote = useSelector(state => state.addNote);
     const username = useSelector(state => state.user);
