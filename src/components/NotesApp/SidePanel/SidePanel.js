@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import "./SIdePanel.css";
@@ -52,17 +52,111 @@ const SidePanel = () => {
         const searchValue = event.currentTarget.value.trim();
 
         setFilteredNotes(notes && notes.filter(
-            note => note.note_text.includes(searchValue)));
+            note => note.note_text.match(new RegExp(searchValue, "i"))));
     };
+
+
+
+
+    const sortNotes = (notes, sortBy) => {
+        // notes can be sorted by
+
+        // creation
+        if (sortBy === "created") {
+            notes.sort((a, b) => {
+                a = new Date(a.note_created);
+                b = new Date(b.note_created);
+                return (a === b) ? 0 : (a < b) ? 1 : -1
+            });
+
+        // or modification date
+        } else {
+            notes.sort((a, b) => {
+                a = new Date(a.note_modified);
+                b = new Date(b.note_modified);
+                return (a === b) ? 0 : (a < b) ? 1 : -1
+            });
+        }
+
+    };
+
+
+
+    const insertDateSegments = (notesCopy) => {
+
+        // assuming the array with notes is sorted by date
+        // insert a date like "January 2020" when loop comes across a new month
+        const dateSegmentFormat = (note) => {
+
+            if (sortBy === 'created') return moment(note.note_created).format("MMM YYYY");
+
+            if (sortBy === 'modified') return moment(note.note_modified).format("MMM YYYY");
+
+        };
+
+        let notesCopyDates = [];
+        for (let i = 0; i < notesCopy.length; i++) {
+
+            let previousEntry;
+            let currentEntry;
+
+            if (i > 0) previousEntry = dateSegmentFormat(notesCopy[i - 1]);
+            currentEntry = dateSegmentFormat(notesCopy[i]);
+
+            if (i === 0 || previousEntry !== currentEntry || !previousEntry) {
+                notesCopyDates.push({
+                    dateSegment: dateSegmentFormat(notesCopy[i])
+                });
+            }
+
+            notesCopyDates.push({
+                note_created: new Date(notesCopy[i].note_created),
+                entry: notesCopy[i]
+            });
+        }
+
+        return notesCopyDates;
+    };
+
+
+    let notesToRender;
+
+    // check if there is a search filter
+    if (filteredNotes && filteredNotes.length > 0) {
+
+        notesToRender = filteredNotes;
+
+    } else if (notes && notes.length > 0) {
+
+        notesToRender = notes;
+
+    }
+
+
+    if (notesToRender && notesToRender.length > 0) {
+
+        // copy state with notes
+        let notesCopy = [...notesToRender];
+
+        // sort by date
+        sortNotes(notesCopy, sortBy);
+
+        // insert a date before each new month in the list
+        notesToRender = insertDateSegments(notesCopy);
+
+    }
+
+
+
 
     const formatNote = (note) =>
 
         note.dateSegment && note.dateSegment
             ?   <div key={Math.random()} className="row">
-                    <div className="col">
-                        <div className="border pl-3 pt-2" style={{ backgroundColor: "rgb(221 221 229 / 50%)", height: "2.6em" }}>{note.dateSegment}</div>
-                    </div>
+                <div className="col">
+                    <div className="border pl-3 pt-2" style={{ backgroundColor: "rgb(221 221 229 / 50%)", height: "2.6em" }}>{note.dateSegment}</div>
                 </div>
+            </div>
             :   <div className={
                 /*highlight activeNote*/
                 activeNote.note_id === note.entry.note_id
@@ -100,85 +194,11 @@ const SidePanel = () => {
             </div>;
 
 
-    const sortNotes = (notes, sortBy) => {
-        // can be sorted by creation or modification date
-
-
-        if (sortBy === "created") {
-            notes.sort((a, b) => {
-                a = new Date(a.note_created);
-                b = new Date(b.note_created);
-                return (a === b) ? 0 : (a < b) ? 1 : -1
-            });
-        } else {
-            notes.sort((a, b) => {
-                a = new Date(a.note_modified);
-                b = new Date(b.note_modified);
-                return (a === b) ? 0 : (a < b) ? 1 : -1
-            });
-        }
-
-    };
-
-    const dateSegmentFormat = (note) => {
-        return moment(note.note_created).format("MMM YYYY")
-    };
-
-
-
-    let notesToRender = [];
-
-    useEffect(() => {
-        if (filteredNotes && filteredNotes.length > 0) {
-            console.log('got filtered notes');
-            notesToRender = filteredNotes;
-        } else if (notes && notes.length > 0) {
-            console.log('got notes');
-            notesToRender = notes;
-        }
-
-        if (notesToRender && notesToRender.length > 0) {
-            // copy state with notes
-            let notesCopy = [...notes];
-
-            sortNotes(notesCopy, sortBy);
-            console.log('inserting');
-
-
-            let notesCopyDates = [];
-
-            for (let i = 0; i < notesCopy.length; i++) {
-                let previousEntry;
-                let currentEntry;
-                if (i > 0) previousEntry = dateSegmentFormat(notesCopy[i - 1]);
-                currentEntry = dateSegmentFormat(notesCopy[i]);
-                if (i === 0 || previousEntry !== currentEntry) {
-                    notesCopyDates.push({
-                        dateSegment: dateSegmentFormat(notesCopy[i])
-                    });
-                }
-                notesCopyDates.push({
-                    note_created: new Date(notesCopy[i].note_created),
-                    entry: notesCopy[i]
-                });
-            }
-
-
-            notesToRender = notesCopyDates;
-            console.info(filteredNotes);
-            console.info(notesToRender);
-
-        }
-
-    }, [filteredNotes]);
-
-
-
-
     return (
         <div className="sidePanel h-100">
 
             {
+                // show either a search box
                 isSearchShown
                     ?   <div className="container mt-1 mb-2">
                             <div className="row">
@@ -188,10 +208,11 @@ const SidePanel = () => {
                                     onChange={handleSearch}
                                     onBlur={() => setIsSearchShown(!isSearchShown)}
                                     placeholder="Search notes" />
-                                <img className="notesSearchNotesIcon col-auto p-2" src={notesSearchNotesIcon} alt="search notes"/>
+                                <i className="far fa-search col-auto p-3"/>
                             </div>
                         </div>
 
+                    // of a "sort by" dropdown
                     :   <div className="container mt-1 mb-2">
                             <div className="row">
                                 <div className="col-9">
@@ -219,11 +240,11 @@ const SidePanel = () => {
                         </div>
             }
 
-
+            {/*actual list of notes*/}
             <div className="container mr-0 pr-0 pl-0 mt-1">
                 <div className="row ml-0" style={{ width: "19em" }}>
                     <div className="col pr-0 pl-0" style={{ overflowY: "auto", overflowX: "hidden", height: "59em"}}>
-                        { notesToRender.map(note => formatNote(note)) }
+                        {notesToRender && notesToRender.map(note => formatNote(note)) }
                     </div>
                 </div>
 

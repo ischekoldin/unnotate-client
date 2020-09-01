@@ -99,7 +99,7 @@ const NotesApp = ({ location }) => {
             console.error(err.message);
         }
 
-    }, [dispatch, token, username, location.state.username]);
+    }, [dispatch, token, username, location.state.username, ENDPOINT]);
 
 
     const deleteActiveNote = useCallback(async () => {
@@ -130,7 +130,7 @@ const NotesApp = ({ location }) => {
             console.error(err.message);
         }
 
-    }, [dispatch, activeNote, token]);
+    }, [dispatch, activeNote, token, ENDPOINT]);
 
 
 
@@ -201,7 +201,7 @@ const NotesApp = ({ location }) => {
             console.error(err.message);
         }
 
-    }, [dispatch, activeNote, token]);
+    }, [activeNote, token, ENDPOINT]);
 
 
     const logOut = useCallback(async () => {
@@ -228,7 +228,7 @@ const NotesApp = ({ location }) => {
             console.error(err.message);
         }
 
-    }, [token]);
+    }, [token, ENDPOINT, dispatch, history]);
 
 
     if (!isScreenNarrow) {

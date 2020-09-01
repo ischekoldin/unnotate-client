@@ -24,6 +24,7 @@ const ChangePasswordForm = ({setIsChangePasswordDialogueShown}) => {
                 setRepeatNewPassword(inputValue);
                 break
             }
+            default:
         }
     };
 
@@ -36,9 +37,6 @@ const ChangePasswordForm = ({setIsChangePasswordDialogueShown}) => {
         }
     };
 
-    const handleSubmit = () => {
-
-    };
 
     return (
         <div className="changePasswordFormWrapper">

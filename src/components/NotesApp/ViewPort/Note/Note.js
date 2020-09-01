@@ -137,7 +137,9 @@ const Note = () => {
         "indent",
         "link",
         "image",
-        "color"
+        "color",
+        "align",
+        "script"
     ];
 
 
