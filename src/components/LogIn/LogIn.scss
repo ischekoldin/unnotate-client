@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 .loginScreenContainer {
     font-family: 'SF UI Text', 'Roboto', sans-serif;
     display: flex;
@@ -5,14 +9,7 @@
     align-content: space-between;
 }
 
-.root-container {
-    height: 97vh;
-    overflow: hidden;
-}
 
-.header {
-    padding-top: 0.7em;
-}
 
 /*.loginContainer {*/
 /*    display: grid;*/
@@ -26,56 +23,34 @@
 
 
 
-.formInput {
-    font-family: inherit;
-    border: 1px solid #F5CB5C76;
-    border-radius: 5px;
-    background-color: #E8EDDF;
-    height: 2em;
-    width: 20em;
-    margin: 0.5em 0 1.5em 0;
-}
-
-.formInput:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(245, 203, 92, 0.6);
-}
 
 .form #password {
     margin-bottom: 0;
 }
 
-.formCheckbox {
-    width: 1em;
-    height: 1em;
-    margin: 0 0 0 2em;
-}
-
-
-.formButtonsWrapper {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-.formBtn {
-    color: #F5CB5C;
-    flex: 1 1;
-    margin: 0 0.5em 0 0.5em;
-    padding: 0.3em 0;
-    border-radius: 5px;
-    background-color: #242423;
-}
-
-.rememberMeWrapper {
-    margin: 1em 0 1em 0;
-    display: flex;
-
-}
+//.formCheckbox {
+//    width: 1em;
+//    height: 1em;
+//    margin: 0 0 0 2em;
+//}
 
 
 
-.form {
-    display: flex;
-    flex-direction: column;
+
+
+
+
+//.form {
+//    display: flex;
+//    flex-direction: column;
+//}
+
+
+
+@media  (max-width: 768px) {
+    .SideBar {
+        width: 100vw;
+        height: 2em;
+    }
+
 }

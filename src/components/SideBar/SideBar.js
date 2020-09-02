@@ -45,18 +45,18 @@ const SideBar = ({location}) => {
 
     return (
         <div className="d-flex flex-column h-100 justify-content-between sideBar mr-0 pr-0 pl-2">
-            <h4 style={{ color: "#CFC0D3" }} >PS</h4>
+            <h4 >PS</h4>
             <div>
                 {
                     // check if there is a user name  to show
                     location && location.state && location.state.username
                         ? <h4 className="userMenuButton rotate-counter-clockwise"
-                              style={{ color: "#CFC0D3" }}
                               onClick={handleUserMenuButtonClick}>
                             {location.state.username}
                             <img id="arrowDownIcon" src={arrowDownIcon} alt="arrow down" />
-                        </h4>
-                        : <h4 className="rotate-counter-clockwise" style={{ color: "#CFC0D3" }}>Log in</h4>
+                            </h4>
+
+                        : <h4 className="rotate-counter-clockwise">Log in</h4>
                 }
             </div>
 

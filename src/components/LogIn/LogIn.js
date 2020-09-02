@@ -51,7 +51,9 @@ const LogIn = () => {
             );
 
             setIsRegisterForm(!isRegisterForm);
+
         } else {
+
             response = await axios.post(
                 `${ENDPOINT}/login`,
                 {
@@ -79,69 +81,89 @@ const LogIn = () => {
 
 
     return (
-        <div className="container-fluid pl-0">
-            <div className="row h-100 p-0">
-                <div className="col-auto" style={{ width: "2em" }}>
+        <div className="container-fluid h-100vh p-0">
+            <div className="row h-100 p-0 no-gutters">
+                <div className="col-md-auto col-sm-12 p-0">
                     <SideBar />
                 </div>
 
                 <div className="col-auto m-auto">
-                    <div className="card p-3 border border-light align-self-center">
+                    <div className="card p-3 border border align-self-center">
+                        {isRegisterForm ? "Register" : "Log in"}
                         <form className="form card-body" onSubmit={handleSubmit}>
-                            <label>name</label>
-                            <input className="form-control" value={nameValue} onChange={handleChange} id="name" type="text" required />
-                            {!isRegisterForm ? null : <label>email</label>}
-                            {!isRegisterForm ? null : <input className="formInput"
-                                                             value={emailValue}
-                                                             onChange={handleChange}
-                                                             id="email"
-                                                             type="email"
-                                                             required />}
-                            <label>password</label>
-                            <input className="form-control" value={passwordValue} onChange={handleChange} id="password" type="password" required />
-
-                            <div className="rememberMeWrapper">
-                                {!isRegisterForm ? <div id="rememberMeLabel"><label>remember me</label></div> : null}
-                                {!isRegisterForm
-                                    ? <div><input className="formInput formCheckbox"
-                                                  value={rememberMeValue}
-                                                  onChange={handleChange}
-                                                  id="rememberMe"
-                                                  type="checkbox"/></div>
-                                    : null}
+                            <div className="form-group">
+                                <label htmlFor="name">name</label>
+                                <input className="form-control"
+                                       value={nameValue}
+                                       onChange={handleChange}
+                                       id="name"
+                                       type="text"
+                                       required
+                                />
+                                {!isRegisterForm ? null : <label>email</label>}
+                                {!isRegisterForm ? null : <input className="formInput"
+                                                                 value={emailValue}
+                                                                 onChange={handleChange}
+                                                                 id="email"
+                                                                 type="email"
+                                                                 required
+                                />}
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">password</label>
+                                <input className="form-control"
+                                       value={passwordValue}
+                                       onChange={handleChange}
+                                       id="password"
+                                       type="password"
+                                       required
+                                />
+                            </div>
+                            <div className="form-group row">
+                                {isRegisterForm ? null : <label className="col-7" htmlFor="rememberMe">remember me</label>}
+                                {isRegisterForm ? null : <input className="formCheckbox col-auto"
+                                                           value={rememberMeValue}
+                                                           onChange={handleChange}
+                                                           id="rememberMe"
+                                                           type="checkbox"
+                                                        />
+                                }
                             </div>
 
-                            <div className="row">
-                                {
-                                    !isRegisterForm
-                                        ? <div className="col-auto">
-                                            <button className="btn btn-primary"
-                                                    onClick={() => setIsRegisterForm(!isRegisterForm)}
-                                                    type="button"
-                                                    id="registerBtn">Register</button>
-                                        </div>
-
-                                        : <div className="col-auto">
-                                            <button className="btn btn-primary"
-                                                    type="submit"
-                                                    id="signUpBtn">Register</button>
-                                        </div>
-
-                                }
-                                {
-                                    !isRegisterForm
-                                        ? <div className="col-auto">
-                                            <button className="btn btn-primary" type="submit" id="signInBtn">
-                                                Log in
+                            <div className="form-group row">
+                                <div className="col-6">
+                                    {
+                                        !isRegisterForm
+                                            ?   <button className="btn btn-primary"
+                                                        onClick={() => setIsRegisterForm(!isRegisterForm)}
+                                                        type="button"
+                                                        id="registerBtn">Register
                                             </button>
-                                        </div>
-                                        : <div className="col-auto">
-                                            <button className="btn btn-primary"
-                                                    onClick={() => setIsRegisterForm(!isRegisterForm)}
-                                                    type="button"
-                                                    id="signInBtn">Log in</button>
-                                        </div>
-                                }
+
+                                            :   <button className="btn btn-primary"
+                                                        type="submit"
+                                                        id="signUpBtn">Register
+                                            </button>
+
+                                    }
+                                </div>
+                                <div className="col-6 ">
+                                    {
+                                        !isRegisterForm
+                                            ?   <button className="btn btn-primary"
+                                                        type="submit"
+                                                        id="signInBtn">Log in
+                                            </button>
+
+                                            :   <button className="btn btn-primary"
+                                                        onClick={() => setIsRegisterForm(!isRegisterForm)}
+                                                        type="button"
+                                                        id="signInBtn">Log in
+                                            </button>
+
+                                    }
+                                </div>
+
                             </div>
                         </form>
                     </div>

@@ -272,7 +272,7 @@ const NotesApp = ({ location }) => {
     }
 
     return (
-        <div className="container-fluid p-0">
+        <div className="container-fluid h-100vh p-0">
             <div className="d-flex">
                     <div className="flex-fill m-0 p-0">
                         <SideBar location={location} />

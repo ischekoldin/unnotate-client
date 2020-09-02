@@ -5,9 +5,9 @@ import App from './App'
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers/rootReducer";
-import "bootstrap/scss/bootstrap.scss";
+//import "bootstrap/scss/bootstrap.scss";
 
-import "./assets/custom.scss";
+import "./scss/custom.scss";
 
 let store;
 

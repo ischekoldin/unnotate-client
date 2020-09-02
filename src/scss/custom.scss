@@ -1,0 +1,21 @@
+
+$secondary: #CFC0D3;
+$primary: #4636bb;
+
+$font-family-sans-serif: 'SF UI Text', 'Roboto', sans-serif;
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.btn-outline-light {
+  color: #000000;
+  border: none;
+}
+
+.btn-outline-light:hover{
+  color: #4636bb;
+  border: none;
+}
+
+body {
+  overscroll-behavior: auto;
+}

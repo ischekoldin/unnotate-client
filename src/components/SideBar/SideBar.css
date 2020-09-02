@@ -1,13 +1,8 @@
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
-}
-
 .sideBar {
-  width: 3em;
   background: linear-gradient(#9665fc, #3c2bb0);
+}
+.sideBar h4 {
+  color: #CFC0D3;
 }
 
 .header h4 {
@@ -69,6 +64,17 @@
 
 .rotate-counter-clockwise {
   transform: rotateZ(-90deg);
+}
+
+@media screen and (max-width: 768px) {
+  .SideBar {
+    width: 100vw;
+  }
+}
+@media screen and (min-width: 768px) {
+  .SideBar {
+    width: 3em;
+  }
 }
 
 /*# sourceMappingURL=SideBar.css.map */
