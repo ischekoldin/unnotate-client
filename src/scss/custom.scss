@@ -6,6 +6,10 @@ $font-family-sans-serif: 'SF UI Text', 'Roboto', sans-serif;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+#root {
+  height: 100vh;
+}
+
 .btn-outline-light {
   color: #000000;
   border: none;

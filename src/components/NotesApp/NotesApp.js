@@ -272,16 +272,15 @@ const NotesApp = ({ location }) => {
     }
 
     return (
-        <div className="container-fluid m-0 p-0">
-            <div className="row no-gutters">
-                <div className="col-md-1 col-sm-12" style={{flex: "0 0 2.1%"}}>
+
+            <div className="row no-gutters h-100">
+                <div className="col-md-1 col-sm-12 sideBarContainer" style={{flex: "0 0 2.1%"}}>
                     <SideBar location={location} />
                 </div>
-                <div className="col-md-auto col-sm-12 pl-0 ml-0 ">
+                <div className="col-md-6 col-sm-12 pl-0 ml-0 h-100 flex-grow-1">
                     <ViewPort />
                 </div>
             </div>
-        </div>
 
 
     )

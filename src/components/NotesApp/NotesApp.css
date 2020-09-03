@@ -73,4 +73,15 @@
   flex: 0 0 3.5%;
 }
 
+@media screen and (max-width: 786px) {
+  .sideBarContainer {
+    height: 2em;
+  }
+}
+@media screen and (min-width: 786px) {
+  .sideBarContainer {
+    height: 100%;
+  }
+}
+
 /*# sourceMappingURL=NotesApp.css.map */

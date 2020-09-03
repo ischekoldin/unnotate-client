@@ -146,22 +146,22 @@ const Note = () => {
 
     return (
         <div className="activeNote h-100">
-            <div className="container-fluid p-0" style={{ height: "3rem" }}>
-                <div className="row justify-content-between m-0">
-                    <div className="col-2">
-                        <div className="btn-toolbar offset-2 h-100">
+            <div className="p-0" style={{ height: "3rem" }}>
+                <div className="d-flex flex-row m-0" style={{ height: "3rem" }}>
+                    <div className="" style={{ height: "3rem" }}>
+
                             <button type="button" className="btn btn-outline-light btn-just-icon bg-transparent pr-4">
                                 <i className="far fa-chevron-left" />
                             </button>
                             <button type="button" className="btn btn-outline-light bg-transparent">
                                 <i className="far fa-chevron-right" />
                             </button>
-                        </div>
-                    </div>
-                    <div className="col-6 h-auto">
 
-                        <div className="row justify-content-end m-0">
-                            <div className="col-2">
+                    </div>
+                    <div className="ml-auto" style={{ height: "3rem" }}>
+
+                        <div className="d-flex justify-content-end m-0">
+                            <div className="">
 
                                 <SaveNoteButton
                                     updateActiveNote={updateActiveNote}
