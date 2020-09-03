@@ -147,7 +147,7 @@ const Note = () => {
     return (
         <div className="activeNote h-100">
             <div className="p-0" style={{ height: "3rem" }}>
-                <div className="d-flex flex-row m-0" style={{ height: "3rem" }}>
+                <div className="d-flex flex-row m-0 mr-5" style={{ height: "3rem" }}>
                     <div className="" style={{ height: "3rem" }}>
 
                             <button type="button" className="btn btn-outline-light btn-just-icon bg-transparent pr-4">

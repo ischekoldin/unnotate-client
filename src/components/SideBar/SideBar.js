@@ -57,7 +57,7 @@ const SideBar = ({location}) => {
                                     <span className="text-nowrap">
                                         {location.state.username}
                                     </span>
-                                <img id="arrowDownIcon" src={arrowDownIcon} alt="arrow down" />
+                                <i className="far fa-angle-down" />
                             </h4>
 
                             : <h4 className="sideBarItem"><span className="text-nowrap">Log in</span></h4>
