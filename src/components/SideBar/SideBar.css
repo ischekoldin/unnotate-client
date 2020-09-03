@@ -67,14 +67,26 @@
 }
 
 @media screen and (max-width: 768px) {
-  .SideBar {
+  .sideBar {
     width: 100vw;
   }
 }
 @media screen and (min-width: 768px) {
-  .SideBar {
-    width: 3em;
+  .sideBar {
+    width: 2.5em;
+    height: 100vh;
   }
+
+  .sideBarItem {
+    transform: rotateZ(-90deg);
+  }
+}
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.sideBar-col {
+  flex: 0 0 4.5%;
 }
 
 /*# sourceMappingURL=SideBar.css.map */

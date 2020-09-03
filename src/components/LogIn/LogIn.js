@@ -83,7 +83,7 @@ const LogIn = () => {
     return (
         <div className="container-fluid h-100vh p-0">
             <div className="row h-100 p-0 no-gutters">
-                <div className="col-md-auto col-sm-12 p-0">
+                <div className="col-md-1 col-sm-12 p-0 sideBar-col">
                     <SideBar />
                 </div>
 

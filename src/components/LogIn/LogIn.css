@@ -18,11 +18,4 @@
   margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
-  .SideBar {
-    width: 100vw;
-    height: 2em;
-  }
-}
-
 /*# sourceMappingURL=LogIn.css.map */

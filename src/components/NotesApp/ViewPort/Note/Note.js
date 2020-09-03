@@ -254,7 +254,7 @@ const Note = () => {
                 theme="snow"
                 modules={modules}
                 formats={formats}
-                style={{ height: '95%', border: 'rgba(165, 169, 177, 0.5)' }}
+                style={{ height: '95vh', border: 'rgba(165, 169, 177, 0.5)', overflowX: "auto" }}
                 value={noteTextTitle}
                 onChange={setNoteTextTitle}
             />

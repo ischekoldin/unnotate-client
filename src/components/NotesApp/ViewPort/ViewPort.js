@@ -15,12 +15,12 @@ const ViewPort = () => {
     const isNoteOpen = useSelector(state => state.isNoteOpen);
 
     return (
-            <div className="viewPort container-fluid root-container p-0">
-                <div className="d-flex h-100">
+            <div className="viewPort container-fluid root-container w-100 p-0">
+                <div className="row h-100 no-gutters" style={{ width: "97vw" }}>
 
                         {
                             !isScreenNarrow || isSidePanelOpen
-                                ? <div className="w-19em"><SidePanel /></div>
+                                ? <div className="col-md-2"><SidePanel /></div>
                                 : null
                         }
 
@@ -28,8 +28,8 @@ const ViewPort = () => {
                         {
                             isNoteOpen
                                 ? isScreenNarrow
-                                ? <div className="w-100"><Note /></div>
-                                : <div className="w-85"><Note /></div>
+                                ? <div className="col-md-10"><Note /></div>
+                                : <div className="col-md-10"><Note /></div>
                                 : null
                         }
 

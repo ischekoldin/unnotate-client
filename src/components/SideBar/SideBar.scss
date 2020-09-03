@@ -2,6 +2,8 @@ $secondary: #916F99;
 
 
 .sideBar {
+    //height: 100%;
+    //width: 100%;
     background: linear-gradient(#9665fc, #3c2bb0);
     h4 {
         color: #CFC0D3;
@@ -74,13 +76,36 @@ $secondary: #916F99;
 }
 
 @media screen and (max-width: 768px) {
-    .SideBar {
+
+    .sideBar {
         width: 100vw;
     }
+
 }
 
 @media screen and (min-width: 768px) {
-    .SideBar {
-        width: 3em;
+    //.logo-col {
+    //    transform: rotateZ(-90deg);
+    //}
+    //.user-menu-col {
+    //    transform: rotateZ(-90deg);
+    //    margin-top: auto;
+    //}
+    .sideBar {
+        width: 2.5em;
+        height: 100vh;
     }
+
+    .sideBarItem {
+        transform: rotateZ(-90deg);
+    }
+
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+.sideBar-col {
+    flex: 0 0 4.5%;
 }

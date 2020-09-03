@@ -44,21 +44,26 @@ const SideBar = ({location}) => {
     },[isUserMenuShown]);
 
     return (
-        <div className="d-flex flex-column h-100 justify-content-between sideBar mr-0 pr-0 pl-2">
-            <h4 >PS</h4>
-            <div>
-                {
-                    // check if there is a user name  to show
-                    location && location.state && location.state.username
-                        ? <h4 className="userMenuButton rotate-counter-clockwise"
-                              onClick={handleUserMenuButtonClick}>
-                            {location.state.username}
-                            <img id="arrowDownIcon" src={arrowDownIcon} alt="arrow down" />
+        <div className="row sideBar justify-content-between no-gutters">
+            <div className="col-sm-2 col-md-12 mt-md-5 pl-md-0 logo-col ">
+                <h4 id="logo" className="pl-sm-3 pl-md-0 mt-md-4 sideBarItem">UnNotate</h4>
+            </div>
+            <div className="col-sm-2 col-md-12 mt-md-auto user-menu-col">
+                    {
+                        // check if there is a user name  to show
+                        location && location.state && location.state.username
+                            ? <h4 className="userMenuButton sideBarItem"
+                                  onClick={handleUserMenuButtonClick}>
+                                    <span className="text-nowrap">
+                                        {location.state.username}
+                                    </span>
+                                <img id="arrowDownIcon" src={arrowDownIcon} alt="arrow down" />
                             </h4>
 
-                        : <h4 className="rotate-counter-clockwise">Log in</h4>
-                }
+                            : <h4 className="sideBarItem"><span className="text-nowrap">Log in</span></h4>
+                    }
             </div>
+
 
 
             {
