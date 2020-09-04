@@ -67,8 +67,8 @@
   transform: rotateZ(-90deg);
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
-  .sideBar {
+@media only screen and (hover: none) and (pointer: coarse) {
+  .sideBarTop {
     width: 100vw;
   }
 }

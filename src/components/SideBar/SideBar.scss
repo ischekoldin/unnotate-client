@@ -76,13 +76,13 @@ $secondary: #916F99;
     transform: rotateZ(-90deg);
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (hover: none) and (pointer: coarse) {
 
-    .sideBar {
+    .sideBarTop {
         width: 100vw;
     }
-
 }
+
 
 @media screen and (min-width: 768px) {
     .sideBar {

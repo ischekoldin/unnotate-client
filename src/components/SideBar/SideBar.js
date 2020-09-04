@@ -7,11 +7,14 @@ import ChangePasswordForm from "../ChangePasswordForm/ChangePasswordForm";
 
 import logoutIcon from "./../../images/icons/logout.png";
 import changePasswordIcon from "./../../images/icons/change-password.png";
-import arrowDownIcon from "./../../images/icons/arrow-down.png";
+import {isMobile} from "react-device-detect";
+
+import SideBarBody from "./SideBarBody/SideBarBody";
+
 
 const SideBar = ({location}) => {
 
-    //console.log(location.state.username);
+
     const [isUserMenuShown, setIsUserMenuShown] = useState(false);
     const [isChangePasswordDialogueShown, setIsChangePasswordDialogueShown] = useState(false);
     const dispatch = useDispatch();
@@ -45,26 +48,10 @@ const SideBar = ({location}) => {
 
     return (
         <div className="row sideBar justify-content-between no-gutters">
-            <div className="col-sm-2 col-md-12 mt-md-5 pl-md-0 logo-col ">
-                <h4 id="logo" className="pl-sm-3 pl-md-0 mt-md-4 sideBarItem">UnNotate</h4>
-            </div>
-            <div className="col-sm-2 col-md-12 mt-md-auto user-menu-col">
-                    {
-                        // check if there is a user name  to show
-                        location && location.state && location.state.username
-                            ? <h4 className="userMenuButton sideBarItem"
-                                  onClick={handleUserMenuButtonClick}>
-                                    <span className="text-nowrap">
-                                        {location.state.username}
-                                    </span>
-                                <i className="far fa-angle-down" />
-                            </h4>
 
-                            : <h4 className="sideBarItem"><span className="text-nowrap">Log in</span></h4>
-                    }
-            </div>
-
-
+            <SideBarBody isMobile={isMobile}
+                         handleUserMenuButtonClick={handleUserMenuButtonClick}
+                         location={location} />
 
             {
                 isUserMenuShown
