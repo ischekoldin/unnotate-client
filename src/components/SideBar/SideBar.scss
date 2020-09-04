@@ -76,7 +76,7 @@ $secondary: #916F99;
     transform: rotateZ(-90deg);
 }
 
-@media screen and (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 767px) {
 
     .sideBar {
         width: 100vw;
@@ -85,13 +85,6 @@ $secondary: #916F99;
 }
 
 @media screen and (min-width: 768px) {
-    //.logo-col {
-    //    transform: rotateZ(-90deg);
-    //}
-    //.user-menu-col {
-    //    transform: rotateZ(-90deg);
-    //    margin-top: auto;
-    //}
     .sideBar {
         width: 2.5em;
         height: 100vh;

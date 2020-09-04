@@ -67,7 +67,7 @@
   transform: rotateZ(-90deg);
 }
 
-@media screen and (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 767px) {
   .sideBar {
     width: 100vw;
   }
