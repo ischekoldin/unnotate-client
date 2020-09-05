@@ -78,6 +78,10 @@ $secondary: #916F99;
 
 @media screen and (max-width: 768px) {
 
+    #logo {
+        margin-left: 3rem;
+    }
+
     .sideBar {
         width: 100vw;
         background: linear-gradient(0.25turn, #9665fc, #3c2bb0);
@@ -98,6 +102,7 @@ $secondary: #916F99;
     .user-menu-col h4 {
         margin-bottom: 3rem;
     }
+
 
 }
 

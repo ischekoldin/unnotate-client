@@ -4,7 +4,7 @@ import ReactQuill from "react-quill";
 
 import "./quill.snow.css";
 import "./Note.css"
-import deleteNoteIcon from "./../../../../images/icons/delete-note-bold.png";
+import deleteNoteIcon from "./../../../images/icons/delete-note-bold.png";
 import moment from "moment";
 import {useMediaQuery} from "react-responsive/src";
 import SaveNoteButton from "./SaveNoteButton/SaveNoteButton";
@@ -145,9 +145,9 @@ const Note = () => {
 
 
     return (
-        <div className="activeNote h-100">
-            <div className="p-0" style={{ height: "3rem" }}>
-                <div className="d-flex flex-row m-0 mr-5" style={{ height: "3rem" }}>
+        <div className="activeNote h-100 d-flex flex-column">
+            <div className="d-flex flex-row" style={{ height: "3rem" }}>
+                <div className="d-flex flex-row m-0 mr-5 flex-grow-1" style={{ height: "3rem" }}>
                     <div className="" style={{ height: "3rem" }}>
 
                             <button type="button" className="btn btn-outline-light btn-just-icon bg-transparent pr-4">

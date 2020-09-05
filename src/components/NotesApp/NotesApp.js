@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import ViewPort from "./ViewPort/ViewPort";
+import MainAreaContainer from "./mainAreaContainer/mainAreaContainer";
 import SideBar from "../SideBar/SideBar";
 import moment from "moment";
 
@@ -278,7 +278,7 @@ const NotesApp = ({ location }) => {
                     <SideBar location={location} />
                 </div>
                 <div className="col-md-6 col-sm-12 pl-0 ml-0 h-100 flex-grow-1">
-                    <ViewPort />
+                    <MainAreaContainer />
                 </div>
             </div>
 

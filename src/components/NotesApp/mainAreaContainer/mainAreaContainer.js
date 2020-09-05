@@ -3,20 +3,20 @@ import React from "react";
 //import {useSelector} from "react-redux";
 
 import SidePanel from "../SidePanel/SidePanel";
-import Note from "./Note/Note";
-import "./ViewPort.css"
+import Note from "../Note/Note";
+import "./mainAreaContainer.css"
 import {useSelector} from "react-redux";
 import {useMediaQuery} from "react-responsive/src";
 
 
-const ViewPort = () => {
+const MainAreaContainer = () => {
     const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
     const isSidePanelOpen = useSelector(state => state.isSidePanelOpen);
     const isNoteOpen = useSelector(state => state.isNoteOpen);
 
     return (
-            <div className="viewPort h-100 w-100 p-0">
-                <div className="d-flex h-100" style={{ width: "97vw" }}>
+            <div className="mainAreaContainer h-100 p-0">
+                <div className="d-flex h-100 w-100">
 
                         {
                             !isScreenNarrow || isSidePanelOpen
@@ -36,4 +36,4 @@ const ViewPort = () => {
         )
 };
 
-export default ViewPort;
+export default MainAreaContainer;
