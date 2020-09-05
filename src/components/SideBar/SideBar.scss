@@ -76,10 +76,11 @@ $secondary: #916F99;
     transform: rotateZ(-90deg);
 }
 
-@media only screen and (hover: none) and (pointer: coarse) {
+@media screen and (max-width: 768px) {
 
     .sideBar {
         width: 100vw;
+        background: linear-gradient(0.25turn, #9665fc, #3c2bb0);
     }
 }
 
@@ -92,6 +93,10 @@ $secondary: #916F99;
 
     .sideBarItem {
         transform: rotateZ(-90deg);
+    }
+
+    .user-menu-col h4 {
+        margin-bottom: 3rem;
     }
 
 }

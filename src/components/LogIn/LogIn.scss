@@ -47,11 +47,16 @@
 //        width: 100vw;
 //    }
 //}
-//
-//@media screen and (min-width: 768px) {
-//    .sideBar-col {
-//        width: 3em;
-//        height: 100vw;
-//    }
-//}
 
+@media screen and (max-width: 768px) {
+    .sideBar-col {
+        height: fit-content;
+        width: 100vw;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .sideBar-col {
+        flex: 0 0 2.1%
+    }
+}

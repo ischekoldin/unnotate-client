@@ -10,6 +10,7 @@ import changePasswordIcon from "./../../images/icons/change-password.png";
 import {isMobile} from "react-device-detect";
 
 import SideBarBody from "./SideBarBody/SideBarBody";
+import {useMediaQuery} from "react-responsive/src";
 
 
 const SideBar = ({location}) => {
@@ -18,6 +19,7 @@ const SideBar = ({location}) => {
     const [isUserMenuShown, setIsUserMenuShown] = useState(false);
     const [isChangePasswordDialogueShown, setIsChangePasswordDialogueShown] = useState(false);
     const dispatch = useDispatch();
+    const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
 
     const handleUserMenuButtonClick = (event) => {
         setIsUserMenuShown(!isUserMenuShown);
@@ -53,16 +55,17 @@ const SideBar = ({location}) => {
             {/*             handleUserMenuButtonClick={handleUserMenuButtonClick}*/}
             {/*             location={location} />*/}
 
-            <div className="col-sm-2 col-md-12 mt-md-5 pl-md-0 logo-col ">
-                <h4 id="logo" className="pl-sm-3 pl-md-0 mt-md-4 sideBarItem">UnNotate</h4>
+
+            <div className="col-sm-2 col-2 col-md-12 mt-md-5 pl-md-0 logo-col">
+                <h4 id="logo" className={`pl-sm-3 pl-md-0 mt-md-4 sideBarItem ${isScreenNarrow ? "ml-5" : null}`}>UnNotate</h4>
             </div>
 
-            <div className="col-sm-2 col-md-12 mt-md-auto user-menu-col">
+            <div className="col-sm-2 col-2 col-md-12 mr-5 mt-md-auto user-menu-col ">
 
                 {
                     // check if there is a user name  to show
                     location && location.state && location.state.username
-                        ?   <h4 className="userMenuButton sideBarItem"
+                        ?   <h4 className={`userMenuButton sideBarItem ${isScreenNarrow ? "ml-5" : null}`}
                                 onClick={handleUserMenuButtonClick}>
                                         <span className="text-nowrap">
                                             {location.state.username}
@@ -70,32 +73,33 @@ const SideBar = ({location}) => {
                             <i className="far fa-angle-down" />
                         </h4>
 
-                        :   <h4 className="sideBarItem"><span className="text-nowrap">Log in</span></h4>
+                        :   <h4 className={`sideBarItem ${isScreenNarrow ? "ml-5" : null}`}>
+                            <span className="text-nowrap">Log in</span>
+                        </h4>
                 }
 
             </div>
 
 
-
             {
                 isUserMenuShown
-                ? <div className="userMenu">
-                    <div onClick={handleUserMenuEntryClick} className="userMenuEntry">
-                        Change password
-                        <img className="menuIcon" src={changePasswordIcon} alt="change password" />
+                ?   <div className="userMenu">
+                        <div onClick={handleUserMenuEntryClick} className="userMenuEntry">
+                            Change password
+                            <img className="menuIcon" src={changePasswordIcon} alt="change password" />
+                        </div>
+                        <div onClick={handleUserMenuEntryClick} className="userMenuEntry">
+                            Logout
+                            <img className="menuIcon" src={logoutIcon} alt="logout" />
+                        </div>
                     </div>
-                    <div onClick={handleUserMenuEntryClick} className="userMenuEntry">
-                        Logout
-                        <img className="menuIcon" src={logoutIcon} alt="logout" />
-                    </div>
-                </div>
-                : null
+                :   null
             }
 
             {
                 isChangePasswordDialogueShown
-                ? <ChangePasswordForm setIsChangePasswordDialogueShown={setIsChangePasswordDialogueShown} />
-                : null
+                ?   <ChangePasswordForm setIsChangePasswordDialogueShown={setIsChangePasswordDialogueShown} />
+                :   null
             }
         </div>
     )

@@ -1,10 +1,13 @@
-import "./LogIn.scss";
+
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 import SideBar from "../SideBar/SideBar";
+
+import "./LogIn.scss";
+import {useMediaQuery} from "react-responsive/src";
 
 const LogIn = () => {
 
@@ -17,6 +20,7 @@ const LogIn = () => {
     const [rememberMeValue, setRememberMeValue] = useState('');
     let history = useHistory();
     const dispatch = useDispatch();
+    const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
 
 
     const handleChange = (event) => {
@@ -83,11 +87,11 @@ const LogIn = () => {
     return (
         <div className="container-fluid h-100vh p-0">
             <div className="row h-100 p-0 no-gutters">
-                <div className="col-md-1 col-sm-12 p-0 sideBar-col">
+                <div className="col-md-1 col-sm-12 p-0" style={!isScreenNarrow ? {flex: "0 0 2.1%"} : {height: "fit-content"} }>
                     <SideBar />
                 </div>
 
-                <div className="col-auto m-auto">
+                <div className="col-auto ml-auto mb-auto mr-auto mt-sm-0 mt-0 mt-md-auto">
                     <div className="card p-3 border border align-self-center">
                         {isRegisterForm ? "Register" : "Log in"}
                         <form className="form card-body" onSubmit={handleSubmit}>
