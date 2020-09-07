@@ -4,7 +4,6 @@ import ReactQuill from "react-quill";
 
 import "./quill.snow.css";
 import "./Note.css"
-import deleteNoteIcon from "./../../../images/icons/delete-note-bold.png";
 import moment from "moment";
 import {useMediaQuery} from "react-responsive/src";
 import SaveNoteButton from "./SaveNoteButton/SaveNoteButton";
@@ -143,18 +142,25 @@ const Note = () => {
     ];
 
 
-
     return (
         <div className="activeNote h-100 d-flex flex-column">
             <div className="d-flex flex-row" style={{ height: "3rem" }}>
                 <div className="d-flex flex-row m-0 mr-5 flex-grow-1" style={{ height: "3rem" }}>
                     <div className="" style={{ height: "3rem" }}>
 
-                            <button type="button" className="btn btn-outline-light btn-just-icon bg-transparent pr-4">
-                                <i className="far fa-chevron-left" />
+                            {isScreenNarrow
+                                ?   <button className="openSidePanelBtn btn btn-secondary"
+                                            onClick={handleSidePanelOpen}>
+                                            <i className="far fa-arrow-left" />
+                                    </button>
+                                :   ""
+                            }
+
+                            <button type="button" className="btn btn-outline-light  bg-transparent pr-2">
+                                <i className="far fa-undo" />
                             </button>
                             <button type="button" className="btn btn-outline-light bg-transparent">
-                                <i className="far fa-chevron-right" />
+                                <i className="far fa-redo" />
                             </button>
 
                     </div>
@@ -189,61 +195,60 @@ const Note = () => {
                     </div>
                 </div>
             </div>
+
             <div id="toolbar">
-                {isScreenNarrow ? <button className="openSidePanelBtn btn btn-secondary" onClick={handleSidePanelOpen}>o</button> : null}
-
-
                 <select title="Size" className="ql-size" defaultValue="13px">
                     <option value="10px">Small</option>
                     <option value="13px">Normal</option>
                     <option value="18px">Large</option>
                     <option value="32px">Huge</option>
                 </select>
-                |
-                <button className="ql-list" value="ordered" />
-                <button className="ql-list" value="bullet" />
-
-
-                <button className="ql-bold" ><img className="toolBarBtnIcon" src={deleteNoteIcon} alt="add note" /></button>
-                <button className="ql-italic" />
-                <button className="ql-underline" />
-                <button className="ql-strike" />
-                <select className="ql-color">
-                    <option value="rgb(0, 0, 0)"/>
-                    <option value="rgb(230, 0, 0)"/>
-                    <option value="rgb(255, 153, 0)"/>
-                    <option value="rgb(255, 255, 0)"/>
-                    <option value="rgb(0, 138, 0)"/>
-                    <option value="rgb(0, 102, 204)"/>
-                    <option value="rgb(153, 51, 255)"/>
-                    <option value="rgb(255, 255, 255)"/>
-                    <option value="rgb(250, 204, 204)"/>
-                    <option value="rgb(255, 235, 204)"/>
-                    <option value="rgb(204, 224, 245)"/>
-                    <option value="rgb(235, 214, 255)"/>
-                    <option value="rgb(187, 187, 187)"/>
-                    <option value="rgb(102, 185, 102)"/>
-                </select>
-
                 <span className="ql-formats">
-                  <button className="ql-script" value="sub"></button>
-                  <button className="ql-script" value="super"></button>
+                    <button className="ql-list" value="ordered" />
+                    <button className="ql-list" value="bullet" />
                 </span>
-
-
-                <select className="ql-align">
-                    <option value="right" className="ql-align-right" />
-                    <option value="center" className="ql-align-center" />
-                </select>
-
+                <span className="ql-formats mr-1">
+                    <button className="ql-bold" />
+                    <button className="ql-italic" />
+                    <button className="ql-underline" />
+                    <button className="ql-strike" />
+                </span>
+                <span className="ql-formats">
+                    <select className="ql-color">
+                        <option value="rgb(0, 0, 0)"/>
+                        <option value="rgb(230, 0, 0)"/>
+                        <option value="rgb(255, 153, 0)"/>
+                        <option value="rgb(255, 255, 0)"/>
+                        <option value="rgb(0, 138, 0)"/>
+                        <option value="rgb(0, 102, 204)"/>
+                        <option value="rgb(153, 51, 255)"/>
+                        <option value="rgb(255, 255, 255)"/>
+                        <option value="rgb(250, 204, 204)"/>
+                        <option value="rgb(255, 235, 204)"/>
+                        <option value="rgb(204, 224, 245)"/>
+                        <option value="rgb(235, 214, 255)"/>
+                        <option value="rgb(187, 187, 187)"/>
+                        <option value="rgb(102, 185, 102)"/>
+                    </select>
+                    <select className="ql-align mr-1" defaultValue="left">
+                        <option value="" className="ql-align-left" />
+                        <option value="center" className="ql-align-center" />
+                        <option value="right" className="ql-align-right" />
+                        <option value="justify" className="ql-align-justify" />
+                    </select>
+                </span>
+                <span className="ql-formats mr-0">
+                  <button className="ql-script" value="sub" />
+                  <button className="ql-script" value="super" />
+                </span>
             </div>
 
             {
                 activeNote && activeNote.note_created
-                    ?   <div className="row position-absolute mt-3 ml-4">
-                            <div className="col-auto border-bottom offset-3 pl-0"
+                    ?   <div className="d-flex position-absolute editor-note-created flex-grow-1">
+                            <div className="border-bottom pl-0"
                                  style={{ fontSize: "0.8em", zIndex: "70" }}>
-                                Note created {moment(activeNote.note_created).format("MMM d yyyy")}
+                                Note created {moment(activeNote.note_created).format("MMM D yyyy")}
                             </div>
                         </div>
 

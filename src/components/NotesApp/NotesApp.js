@@ -277,7 +277,7 @@ const NotesApp = ({ location }) => {
                 <div className="col-md-1 col-sm-12 sideBarContainer" style={{flex: "0 0 2.1%"}}>
                     <SideBar location={location} />
                 </div>
-                <div className="col-md-6 col-sm-12 pl-0 ml-0 h-100 flex-grow-1">
+                <div className="col-md-9 col-sm-12 pl-0 ml-0 h-100 flex-grow-1">
                     <MainAreaContainer />
                 </div>
             </div>

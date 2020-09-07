@@ -44,13 +44,14 @@ const SideBarBody = ({handleUserMenuButtonClick, location}) => {
                 {
                     // check if there is a user name  to show
                     location && location.state && location.state.username
-                        ?   <h4 className={`userMenuButton sideBarItem ${isScreenNarrow ? "ml-5" : null}`}
+                        ?   <div className={`userMenuButton sideBarItem d-flex ${isScreenNarrow ? "ml-5" : null}`}
                                 onClick={handleUserMenuButtonClick}>
                                         <span className="text-nowrap">
                                             {location.state.username}
+                                            <i className="far fa-angle-down" />
                                         </span>
-                            <i className="far fa-angle-down" />
-                        </h4>
+
+                        </div>
 
                         :   <h4 className={`sideBarItem ${isScreenNarrow ? "ml-5" : null}`}>
                                 <span className="text-nowrap">Log in</span>

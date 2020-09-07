@@ -1,4 +1,4 @@
-$secondary: #916F99;
+$secondary: rgba(145, 111, 153, 0.2);
 
 
 .sideBar {
@@ -7,13 +7,15 @@ $secondary: #916F99;
     background: linear-gradient(#9665fc, #3c2bb0);
     h4 {
         font-size: 1.2em;
-        color: #CFC0D3;
+        color: #fff;
 
     }
 }
 
 
+.sideBarItem {
 
+}
 
 
 .header h4 {
@@ -40,7 +42,6 @@ $secondary: #916F99;
     flex-direction: column;
     position: absolute;
     bottom: 2.8em;
-    left: 3em;
     background-color: #FCFCFA;
     width: auto;
     height: auto;
@@ -62,9 +63,14 @@ $secondary: #916F99;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1.5em 0.5em 1.5em;
-    margin: 0.5em 0 0.1em 0;
+    padding: 0.7em 1.5em 0.5em 1.5em;
+    margin: 0;
+    width: fit-content;
     cursor: pointer;
+}
+
+.userMenuEntry:hover {
+    background-color: $secondary;
 }
 
 .menuIcon {
@@ -76,16 +82,29 @@ $secondary: #916F99;
     transform: rotateZ(-90deg);
 }
 
+.rotate-clockwise {
+    transform: rotateZ(90deg);
+}
+
+
 @media screen and (max-width: 768px) {
 
     #logo {
-        margin-left: 3rem;
+        margin-left: 1.6rem;
     }
 
     .sideBar {
         width: 100vw;
         background: linear-gradient(0.25turn, #9665fc, #3c2bb0);
     }
+
+    .userMenu {
+        left: auto;
+        bottom: auto;
+        top: 2em;
+        right: 1em;
+    }
+
 }
 
 
@@ -103,6 +122,10 @@ $secondary: #916F99;
         margin-bottom: 3rem;
     }
 
+    .userMenu {
+        right: auto;
+        left: 0;
+    }
 
 }
 

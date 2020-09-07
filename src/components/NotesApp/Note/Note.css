@@ -52,3 +52,23 @@
     width: 1px;
     height: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .editor-note-created {
+        margin-top: 6.5rem;
+        margin-left: 1.5rem;
+    }
+    .ql-container {
+        padding: 2rem 0.5rem 0.5rem 0.5rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .editor-note-created {
+        margin-top: 7rem;
+        margin-left: 4rem;
+    }
+    .ql-container {
+        padding: 3rem;
+    }
+}

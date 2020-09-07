@@ -66,12 +66,12 @@ const SideBar = ({location}) => {
                 {
                     // check if there is a user name  to show
                     location && location.state && location.state.username
-                        ?   <h4 className={`userMenuButton sideBarItem ${isScreenNarrow ? "ml-5" : null}`}
+                        ?   <h4 className={`userMenuButton sideBarItem d-flex flex-row ${isScreenNarrow ? "ml-5" : ""}`}
                                 onClick={handleUserMenuButtonClick}>
                                         <span className="text-nowrap">
                                             {location.state.username}
                                         </span>
-                            <i className="far fa-angle-down" />
+                            <i className="far fa-angle-down ml-2 mt-1" />
                         </h4>
 
                         :   <h4 className={`sideBarItem ${isScreenNarrow ? "ml-5" : null}`}>
@@ -84,14 +84,15 @@ const SideBar = ({location}) => {
 
             {
                 isUserMenuShown
-                ?   <div className="userMenu">
-                        <div onClick={handleUserMenuEntryClick} className="userMenuEntry">
+                ?   <div className="userMenu ml-md-5">
+                        <div onClick={handleUserMenuEntryClick} className="userMenuEntry text-nowrap">
                             Change password
-                            <img className="menuIcon" src={changePasswordIcon} alt="change password" />
+                            <i className="far fa-key pl-md-3" />
                         </div>
-                        <div onClick={handleUserMenuEntryClick} className="userMenuEntry">
+                        <div onClick={handleUserMenuEntryClick}
+                             className="userMenuEntry d-flex justify-content-between flex-grow-1 w-100">
                             Logout
-                            <img className="menuIcon" src={logoutIcon} alt="logout" />
+                            <i className="far fa-sign-out pl-md-5" />
                         </div>
                     </div>
                 :   null
