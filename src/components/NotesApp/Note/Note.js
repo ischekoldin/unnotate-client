@@ -6,7 +6,6 @@ import "./quill.snow.css";
 import "./Note.css"
 import moment from "moment";
 import {useMediaQuery} from "react-responsive/src";
-import SaveNoteButton from "./SaveNoteButton/SaveNoteButton";
 import NotesActionBar from "./NotesActionBar/NotesActionBar";
 
 const Note = () => {
