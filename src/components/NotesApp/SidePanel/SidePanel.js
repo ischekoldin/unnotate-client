@@ -243,7 +243,7 @@ const SidePanel = () => {
             {/*actual list of notes*/}
             <div className="container mr-0 pr-0 pl-0 mt-1">
                 <div className="row ml-0" style={{ width: "19em" }}>
-                    <div className="col pr-0 pl-0" style={{ overflowY: "auto", overflowX: "hidden", height: "59em"}}>
+                    <div className="col pr-0 pl-0" style={{ overflowY: "auto", overflowX: "hidden", height: "calc(100vh - 8em)"}}>
                         {notesToRender && notesToRender.map(note => formatNote(note)) }
                     </div>
                 </div>

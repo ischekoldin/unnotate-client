@@ -3,11 +3,7 @@ import React, {useEffect, useState} from "react";
 import "./SideBar.scss";
 import {useDispatch} from "react-redux";
 
-import ChangePasswordForm from "../ChangePasswordForm/ChangePasswordForm";
-
-import logoutIcon from "./../../images/icons/logout.png";
-import changePasswordIcon from "./../../images/icons/change-password.png";
-import {isMobile} from "react-device-detect";
+import ChangePasswordForm from "./ChangePasswordForm/ChangePasswordForm";
 
 import SideBarBody from "./SideBarBody/SideBarBody";
 import {useMediaQuery} from "react-responsive/src";
@@ -87,7 +83,7 @@ const SideBar = ({location}) => {
                 ?   <div className="userMenu ml-md-5">
                         <div onClick={handleUserMenuEntryClick} className="userMenuEntry text-nowrap">
                             Change password
-                            <i className="far fa-key pl-md-3" />
+                            <i className="far fa-key pl-3" />
                         </div>
                         <div onClick={handleUserMenuEntryClick}
                              className="userMenuEntry d-flex justify-content-between flex-grow-1 w-100">

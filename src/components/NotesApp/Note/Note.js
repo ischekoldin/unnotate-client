@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ReactQuill from "react-quill";
 
@@ -7,6 +7,7 @@ import "./Note.css"
 import moment from "moment";
 import {useMediaQuery} from "react-responsive/src";
 import SaveNoteButton from "./SaveNoteButton/SaveNoteButton";
+import NotesActionBar from "./NotesActionBar/NotesActionBar";
 
 const Note = () => {
 
@@ -17,6 +18,7 @@ const Note = () => {
     const [noteTextTitle, setNoteTextTitle] = useState('');
     const dispatch = useDispatch();
     const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
+    const quillRef = useRef();
 
 
     // if note is edited, send the new version to Redux store
@@ -63,34 +65,6 @@ const Note = () => {
         deleteNote
     ]);
 
-    const handleDeleteNote = () => {
-        dispatch({
-            type: 'notes/delete',
-            payload: true
-        });
-    };
-
-    const handleAddNewNote = () => {
-        dispatch({
-            type: 'notes/add',
-            payload: true
-        });
-    };
-
-    const handleSaveNote = () => {
-        markActiveNoteForSaving();
-    };
-
-    const handleSidePanelOpen = () => {
-        dispatch({
-            type: 'responsiveness/isSidePanelOpen',
-            payload: true
-        });
-        dispatch({
-            type: 'responsiveness/isNoteOpen',
-            payload: false
-        });
-    };
 
     // sync activeNote in global Redux store with local state inside component
     useEffect(() => {
@@ -130,7 +104,6 @@ const Note = () => {
         "italic",
         "underline",
         "strike",
-        "blockquote",
         "list",
         "bullet",
         "indent",
@@ -144,65 +117,24 @@ const Note = () => {
 
     return (
         <div className="activeNote h-100 d-flex flex-column">
-            <div className="d-flex flex-row" style={{ height: "3rem" }}>
-                <div className="d-flex flex-row m-0 mr-5 flex-grow-1" style={{ height: "3rem" }}>
-                    <div className="" style={{ height: "3rem" }}>
 
-                            {isScreenNarrow
-                                ?   <button className="openSidePanelBtn btn btn-secondary"
-                                            onClick={handleSidePanelOpen}>
-                                            <i className="far fa-arrow-left" />
-                                    </button>
-                                :   ""
-                            }
+            <NotesActionBar
+                updateActiveNote={updateActiveNote}
+                markActiveNoteForSaving={markActiveNoteForSaving}
+                isScreenNarrow={isScreenNarrow}
+                quillRef={quillRef}
+                dispatch={dispatch}
+            />
 
-                            <button type="button" className="btn btn-outline-light  bg-transparent pr-2">
-                                <i className="far fa-undo" />
-                            </button>
-                            <button type="button" className="btn btn-outline-light bg-transparent">
-                                <i className="far fa-redo" />
-                            </button>
-
-                    </div>
-                    <div className="ml-auto" style={{ height: "3rem" }}>
-
-                        <div className="d-flex justify-content-end m-0">
-                            <div className="">
-
-                                <SaveNoteButton
-                                    updateActiveNote={updateActiveNote}
-                                    handleSaveNote={handleSaveNote}
-                                />
-
-                                <button className="btn m-0 pt-2 h-100 btn-just-icon btn-outline-light bg-transparent"
-                                        type="button"
-                                        onClick={handleDeleteNote}>
-
-                                    <i className="far fa-trash" />
-                                </button>
-
-                            </div>
-
-                            <div className="col-1">
-                                <button className="btn btn-primary m-0 pt-1 btn-just-icon"
-                                                         id="addNoteBtn"
-                                                         type="button"
-                                                         onClick={handleAddNewNote}>
-                                    <i className="fas fa-plus" />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="toolbar">
-                <select title="Size" className="ql-size" defaultValue="13px">
-                    <option value="10px">Small</option>
-                    <option value="13px">Normal</option>
-                    <option value="18px">Large</option>
-                    <option value="32px">Huge</option>
-                </select>
+            <div id="toolbar" className="ql-toolbar">
+                <span className="ql-formats">
+                    <select className="ql-size" defaultValue="normal">
+                        <option value="small">Small</option>
+                        <option value="normal">Normal</option>
+                        <option value="large">Large</option>
+                        <option value="huge">Huge</option>
+                    </select>
+                </span>
                 <span className="ql-formats">
                     <button className="ql-list" value="ordered" />
                     <button className="ql-list" value="bullet" />
@@ -259,6 +191,7 @@ const Note = () => {
                 theme="snow"
                 modules={modules}
                 formats={formats}
+                ref={quillRef}
                 style={{ height: '95vh', border: 'rgba(165, 169, 177, 0.5)', overflowX: "auto" }}
                 value={noteTextTitle}
                 onChange={setNoteTextTitle}
