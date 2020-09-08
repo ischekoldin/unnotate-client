@@ -13,6 +13,7 @@ const NotesApp = ({ location }) => {
 
     const ENDPOINT = useSelector(state => state.endpoint);
     const [token, setToken] = useState((location.state && location.state.token) || '');
+    const isTokenRefreshRequired = useSelector(state => state.tokenRefreshRequired);
     const addNote = useSelector(state => state.addNote);
     const username = useSelector(state => state.user);
     const deleteNote = useSelector(state => state.deleteNote);
@@ -35,9 +36,38 @@ const NotesApp = ({ location }) => {
     const CONFIG_REFRESH_TOKEN = {
         method: 'get',
         url: `${ENDPOINT}/token`,
+        withCredentials: true
     };
 
 
+    const updateUserName = useCallback ( () => {
+
+        // recover user name if lost on refresh
+        if (!username) {
+            dispatch({
+                type: 'user/set',
+                payload: location.state.username
+            });
+        }
+
+    },[username, dispatch, location.state.username]);
+
+
+    const refreshToken = useCallback (async () => {
+
+        try {
+            const newAccessToken = await axios(CONFIG_REFRESH_TOKEN);
+            //await console.info(`New token ${newAccessToken}`);
+            await setToken(newAccessToken.data.accessToken);
+            await dispatch({
+                type: 'auth/tokenRefreshRequired',
+                payload: false
+            });
+        } catch (err) {
+            console.error(err.message);
+        }
+
+    },[CONFIG_REFRESH_TOKEN, dispatch]);
 
 
 
@@ -51,18 +81,17 @@ const NotesApp = ({ location }) => {
 
              } catch (err) {
                   if (err.response && err.response.status === 403) {
-                     //console.log('Catch');
 
-                     axios(CONFIG_REFRESH_TOKEN).then((newAccessToken) => {
-                         //console.log('Try refresh');
-                         setToken(newAccessToken.data.accessToken);
+                      dispatch({
+                          type: 'auth/tokenRefreshRequired',
+                          payload: true
+                      });
 
-                     });
                   }
                  return console.error(err.message);
              }
          }
-     }, [CONFIG_FETCH_NOTES, CONFIG_REFRESH_TOKEN, addNote, deleteNote, updateActiveNote]);
+     }, [CONFIG_FETCH_NOTES, CONFIG_REFRESH_TOKEN, addNote, deleteNote, updateActiveNote, dispatch]);
 
     const addNewNote = useCallback(async () => {
         const noteTitle = '<p>New note</p>';
@@ -92,10 +121,15 @@ const NotesApp = ({ location }) => {
             });
 
         } catch (err) {
-            dispatch({
-                type: 'notes/add',
-                payload: false
-            });
+            if (err.response && err.response.status === 403) {
+                //console.log('Catch');
+
+                dispatch({
+                    type: 'auth/tokenRefreshRequired',
+                    payload: true
+                });
+
+            }
             console.error(err.message);
         }
 
@@ -123,17 +157,31 @@ const NotesApp = ({ location }) => {
                 type: 'notes/clearActiveNote',
             });
         } catch (err) {
-            // dispatch({
-            //     type: 'notes/delete',
-            //     payload: false
-            // });
+            if (err.response && err.response.status === 403) {
+                //console.log('Catch');
+
+                dispatch({
+                    type: 'auth/tokenRefreshRequired',
+                    payload: true
+                });
+
+            }
             console.error(err.message);
         }
 
     }, [dispatch, activeNote, token, ENDPOINT]);
 
 
+    useEffect(() => {
+        updateUserName();
+    },[updateUserName]);
 
+
+    useEffect(() => {
+        if (isTokenRefreshRequired) {
+            refreshToken();
+        }
+    },[isTokenRefreshRequired]);
 
 
     useEffect(() => {
@@ -145,14 +193,6 @@ const NotesApp = ({ location }) => {
                     type: 'notes/fetch',
                     payload: result
                 });
-
-                // recover user name if lost on refresh
-                if (!username) {
-                    dispatch({
-                        type: 'user/set',
-                        payload: location.state.username
-                    });
-                }
 
             }
 
@@ -168,14 +208,13 @@ const NotesApp = ({ location }) => {
         [
         deleteNote,
         addNote,
-        dispatch,
         fetchNotes,
         updateActiveNote,
-        username,
         notesUpdateRequired,
-        location.state.username
         ]
     );
+
+
 
 
     const saveActiveNote = useCallback(async () => {
@@ -268,7 +307,8 @@ const NotesApp = ({ location }) => {
     },[logout, logOut]);
 
     if (!token) {
-        history.push('/')
+        refreshToken().then(history.push('/notes')).catch(history.push('/'));
+
     }
 
     return (

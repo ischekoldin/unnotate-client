@@ -1,6 +1,7 @@
 
 const initialState = {
     endpoint: '',
+    tokenRefreshRequired: false,
     notes: [],
     updateRequired: false,
     activeNote: {},
@@ -17,6 +18,8 @@ function rootReducer (state = initialState, action) {
     switch (action.type) {
         case 'backend/endpoint':
             return { ...state, endpoint: action.payload };
+        case 'auth/tokenRefreshRequired':
+            return { ...state, tokenRefreshRequired: action.payload };
         case 'notes/fetch':
             return { ...state, notes: action.payload };
         case 'notes/updateRequired':

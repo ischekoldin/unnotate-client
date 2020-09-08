@@ -41,7 +41,7 @@ const ChangePasswordForm = ({setIsChangePasswordDialogueShown}) => {
     return (
         <div className="changePasswordFormWrapper">
             <form className="changePasswordForm card form">
-                <span className="text-center">Change password</span>
+                <span className="text-center card-header">Change password</span>
 
                 <div className="card-body">
                     <div className="form-group">

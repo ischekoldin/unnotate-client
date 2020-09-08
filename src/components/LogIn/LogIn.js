@@ -1,5 +1,5 @@
 
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -13,6 +13,7 @@ const LogIn = () => {
 
 
     const ENDPOINT = useSelector(state => state.endpoint);
+    const [tryCookieLogin, setTryCookieLogin] = useState(true);
     const [isRegisterForm, setIsRegisterForm] = useState(false);
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
@@ -21,6 +22,14 @@ const LogIn = () => {
     let history = useHistory();
     const dispatch = useDispatch();
     const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
+
+
+    const CONFIG_REFRESH_TOKEN = {
+        method: 'get',
+        url: `${ENDPOINT}/token`,
+        withCredentials: true
+    };
+
 
 
     const handleChange = (event) => {
@@ -35,6 +44,20 @@ const LogIn = () => {
             setRememberMeValue(!rememberMeValue);
         }
     };
+
+
+    const refreshToken = useCallback (async () => {
+
+        try {
+
+            //console.info(`New token ${await axios(CONFIG_REFRESH_TOKEN)}`);
+            return await axios(CONFIG_REFRESH_TOKEN);
+        } catch (err) {
+            console.error(err.message);
+        }
+
+    },[CONFIG_REFRESH_TOKEN]);
+
 
 
 
@@ -82,6 +105,26 @@ const LogIn = () => {
         }
 
     };
+
+
+    if (tryCookieLogin) {
+        refreshToken().then(
+            (newAccessToken) => {
+                if (newAccessToken) {
+                    history.push({
+                        pathname: '/notes',
+                        state:
+                            {
+                                token: newAccessToken.data.accessToken,
+                                username: newAccessToken.data.name
+                            }
+                    });
+                }
+
+            }
+
+        ).catch(setTryCookieLogin(false));
+    }
 
 
     return (

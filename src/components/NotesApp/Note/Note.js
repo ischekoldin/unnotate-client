@@ -176,7 +176,7 @@ const Note = () => {
 
             {
                 activeNote && activeNote.note_created
-                    ?   <div className="d-flex position-absolute editor-note-created flex-grow-1">
+                    ?   <div className="position-absolute editor-note-created w-auto">
                             <div className="border-bottom pl-0"
                                  style={{ fontSize: "0.8em", zIndex: "70" }}>
                                 Note created {moment(activeNote.note_created).format("MMM D yyyy")}
