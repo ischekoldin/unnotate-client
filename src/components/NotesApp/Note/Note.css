@@ -55,11 +55,12 @@
 
 @media screen and (max-width: 768px) {
     .editor-note-created {
-        margin-top: 7rem;
+        margin-top: 7.4rem;
         margin-left: 1.5rem;
     }
     .ql-container {
-        padding: 2rem 0.5rem 0.5rem 0.5rem;
+        padding: 2rem 0.5rem 0 0.5rem;
+        height: calc(100% - 2.5em);
     }
 }
 

@@ -51,9 +51,8 @@ const NotesActionBar = (
 
     return (
 
-        <div className="d-flex flex-row" style={{ height: "3rem" }}>
-            <div className="d-flex flex-row m-0 flex-grow-1" style={{ height: "3rem" }}>
-                <div className="" style={{ height: "3rem" }}>
+            <div className="d-flex flex-row flex-grow-1" style={{ height: "3rem" }}>
+                <div className="d-flex align-items-center" style={{ height: "3rem" }}>
 
                     {isScreenNarrow
                         ?   <button className="openSidePanelBtn btn btn-secondary"
@@ -73,9 +72,9 @@ const NotesActionBar = (
                     </button>
 
                 </div>
-                <div className="ml-auto" style={{ height: "3rem" }}>
+                <div className="ml-auto d-flex align-items-center" style={{ height: "3rem" }}>
 
-                    <div className="d-flex justify-content-end m-0">
+                    <div className="d-flex justify-content-end align-content-center m-0">
                         <div className="">
 
                             <SaveNoteButton
@@ -101,7 +100,6 @@ const NotesActionBar = (
                     </div>
                 </div>
             </div>
-        </div>
     )
 
 };

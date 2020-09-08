@@ -73,11 +73,6 @@ $secondary: rgba(145, 111, 153, 0.2);
     background-color: $secondary;
 }
 
-.menuIcon {
-    height: 1.5em; width: 1.5em;
-    margin-left: 0.9em;
-}
-
 .rotate-counter-clockwise {
     transform: rotateZ(-90deg);
 }
@@ -90,12 +85,19 @@ $secondary: rgba(145, 111, 153, 0.2);
 @media screen and (max-width: 768px) {
 
     #logo {
+        position: relative;
+        top: 0.2em;
         margin-left: 1.6rem;
     }
 
     .sideBar {
         width: 100vw;
         background: linear-gradient(0.25turn, #9665fc, #3c2bb0);
+    }
+
+    .userMenuButton {
+        position: relative;
+        top: 0.2em;
     }
 
     .userMenu {
