@@ -25,11 +25,10 @@ const MainAreaContainer = () => {
                         }
 
 
-                        {
-                            isNoteOpen
-                                ? <div className="flex-grow-1 flex-shrink-1 h-100"><Note /></div>
-                                : null
-                        }
+
+<div className="flex-grow-1 flex-shrink-1 h-100"><Note /></div>
+
+
 
                     </div>
             </div>
