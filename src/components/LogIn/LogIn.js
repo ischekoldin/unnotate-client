@@ -87,7 +87,8 @@ const LogIn = () => {
                     name: nameValue,
                     password: passwordValue
                 },
-                { headers: { 'Content-Type': 'application/json' } }
+                { headers: { 'Content-Type': 'application/json' },
+                         withCredentials: true }
             );
 
             dispatch({
