@@ -125,6 +125,7 @@ const LogIn = () => {
     // check if rememberMe option has been set to true and try to get a new access token
     const rememberMe = document.cookie
         .replace(/(?:(?:^|.*;\s*)unnotateRememberMe\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    console.info(rememberMe);
     if (rememberMe && tryCookieLogin) {
         refreshToken().then(
             (newAccessToken) => {
