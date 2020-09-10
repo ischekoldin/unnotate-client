@@ -251,6 +251,7 @@ const NotesApp = ({ location }) => {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
+            withCredentials: true,
         };
 
         try {

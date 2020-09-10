@@ -5,7 +5,6 @@ import {useDispatch} from "react-redux";
 
 import ChangePasswordForm from "./ChangePasswordForm/ChangePasswordForm";
 
-import SideBarBody from "./SideBarBody/SideBarBody";
 import {useMediaQuery} from "react-responsive/src";
 
 
@@ -17,14 +16,14 @@ const SideBar = ({location}) => {
     const dispatch = useDispatch();
     const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
 
-    const handleUserMenuButtonClick = (event) => {
+    const handleUserMenuButtonClick = () => {
         setIsUserMenuShown(!isUserMenuShown);
     };
 
     const handleUserMenuEntryClick = (event) => {
-        if (event.currentTarget.innerText === "Change password") {
+        if (event.currentTarget.id === "change-password") {
             setIsChangePasswordDialogueShown(true);
-        } else {
+        } else if (event.currentTarget.id === "logout"){
             dispatch({
                 type: "auth/logout",
                 payload: true
@@ -37,6 +36,7 @@ const SideBar = ({location}) => {
         setIsUserMenuShown(false);
     };
 
+    // hide user menu on a click outside it
     useEffect(() => {
         if (isUserMenuShown) {
             document.addEventListener("click", hideUserMenu);
@@ -47,20 +47,14 @@ const SideBar = ({location}) => {
     return (
         <div className="row sideBar justify-content-between no-gutters">
 
-            {/*<SideBarBody isMobile={isMobile}*/}
-            {/*             handleUserMenuButtonClick={handleUserMenuButtonClick}*/}
-            {/*             location={location} />*/}
-
-
-
             <div className="col-sm-2 col-2 col-md-12 mt-md-5 pl-md-0 logo-col">
-                <h4 id="logo" className={`pl-sm-3 pl-md-0 mt-md-4 sideBarItem `}>UnNotate</h4>
+                <h4 id="logo" className="pl-sm-3 pl-md-0 mt-md-4 sideBarItem">UnNotate</h4>
             </div>
 
             <div className="col-sm-2 col-2 col-md-12 mr-5 mt-md-auto user-menu-col ">
 
                 {
-                    // check if there is a user name  to show
+                    // show the user menu button or log in label
                     location && location.state && location.state.username
                         ?   <h4 className={`userMenuButton sideBarItem d-flex flex-row ${isScreenNarrow ? "ml-5" : ""}`}
                                 onClick={handleUserMenuButtonClick}>
@@ -77,16 +71,16 @@ const SideBar = ({location}) => {
 
             </div>
 
-
             {
+                // show and hide user menu
                 isUserMenuShown
                 ?   <div className="userMenu ml-md-5">
-                        <div onClick={handleUserMenuEntryClick} className="userMenuEntry text-nowrap">
+                        <div onClick={handleUserMenuEntryClick} className="userMenuEntry text-nowrap" id="change-password">
                             Change password
                             <i className="far fa-key pl-3" />
                         </div>
                         <div onClick={handleUserMenuEntryClick}
-                             className="userMenuEntry d-flex justify-content-between flex-grow-1 w-100">
+                             className="userMenuEntry d-flex justify-content-between flex-grow-1 w-100" id="logout">
                             Logout
                             <i className="far fa-sign-out pl-md-5" />
                         </div>
@@ -95,6 +89,7 @@ const SideBar = ({location}) => {
             }
 
             {
+                // show and hide change password dialogue
                 isChangePasswordDialogueShown
                 ?   <ChangePasswordForm setIsChangePasswordDialogueShown={setIsChangePasswordDialogueShown} />
                 :   null
