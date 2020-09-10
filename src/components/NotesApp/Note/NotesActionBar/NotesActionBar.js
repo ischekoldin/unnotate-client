@@ -62,12 +62,10 @@ const NotesActionBar = (
                         :   ""
                     }
 
-                    <button type="button" className="btn btn-outline-light  bg-transparent pr-2"
-                            onClick={editorUndo}>
+                    <button type="button" className="btn btn-outline-light  bg-transparent pr-2" onClick={editorUndo}>
                         <i className="far fa-undo" />
                     </button>
-                    <button type="button" className="btn btn-outline-light bg-transparent"
-                            onClick={editorRedo}>
+                    <button type="button" className="btn btn-outline-light bg-transparent" onClick={editorRedo}>
                         <i className="far fa-redo" />
                     </button>
 

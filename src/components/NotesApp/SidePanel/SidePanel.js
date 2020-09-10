@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import "./SIdePanel.css";
-import notesSearchNotesIcon from "./../../../images/icons/search-notes.png";
 import {useMediaQuery} from "react-responsive/src";
 import moment from "moment";
 
@@ -54,8 +53,6 @@ const SidePanel = () => {
         setFilteredNotes(notes && notes.filter(
             note => note.note_text.match(new RegExp(searchValue, "i"))));
     };
-
-
 
 
     const sortNotes = (notes, sortBy) => {
@@ -229,12 +226,8 @@ const SidePanel = () => {
                                     </div>
                                 </div>
 
-                                <div className="col-3">
-                                    <img className="notesSearchNotesIcon col-auto p-2"
-                                         onClick={() => setIsSearchShown(!isSearchShown)}
-                                         src={notesSearchNotesIcon}
-                                         alt="search notes"
-                                    />
+                                <div className="col-3" onClick={() => setIsSearchShown(!isSearchShown)}>
+                                    <i className="far fa-search"/>
                                 </div>
                             </div>
                         </div>

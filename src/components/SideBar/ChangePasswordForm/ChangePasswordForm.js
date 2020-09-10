@@ -46,11 +46,6 @@ const ChangePasswordForm = ({setIsChangePasswordDialogueShown}) => {
                 <div className="card-body">
                     <div className="form-group">
                         <label>Old password:</label>
-                        {
-                            !oldPassword
-                                ? <div className="alert alert-warning" role="alert">Old password can't be empty</div>
-                                : null
-                        }
                         <input onChange={handleChange} type="password" name="oldPassword" className="form-control" required />
                     </div>
 

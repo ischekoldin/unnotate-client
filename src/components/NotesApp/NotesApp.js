@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import MainAreaContainer from "./mainAreaContainer/mainAreaContainer";
+import Container from "./Container/Container";
 import SideBar from "../SideBar/SideBar";
 import moment from "moment";
 
@@ -91,7 +91,7 @@ const NotesApp = ({ location }) => {
                  return console.error(err.message);
              }
          }
-     }, [CONFIG_FETCH_NOTES, CONFIG_REFRESH_TOKEN, addNote, deleteNote, updateActiveNote, dispatch]);
+     }, [CONFIG_FETCH_NOTES, addNote, deleteNote, updateActiveNote, dispatch]);
 
     const addNewNote = useCallback(async () => {
         const noteTitle = '<p>New note</p>';
@@ -319,7 +319,7 @@ const NotesApp = ({ location }) => {
                     <SideBar location={location} />
                 </div>
                 <div className="col-md-9 col-sm-12 pl-0 ml-0 h-100 flex-grow-1">
-                    <MainAreaContainer />
+                    <Container />
                 </div>
             </div>
 

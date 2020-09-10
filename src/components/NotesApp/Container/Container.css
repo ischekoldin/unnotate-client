@@ -1,0 +1,12 @@
+
+@media screen and (min-width: 768px) {
+    .mainAreaContainer {
+        width: calc(100vw - 2.5em);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mainAreaContainer {
+        width: 100vw;
+    }
+}

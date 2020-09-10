@@ -1,12 +1,13 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ReactQuill from "react-quill";
-
-import "./quill.snow.css";
-import "./Note.css"
 import moment from "moment";
 import {useMediaQuery} from "react-responsive/src";
+
+
 import NotesActionBar from "./NotesActionBar/NotesActionBar";
+import "./quill.snow.css";
+import "./Note.css"
 
 const Note = () => {
 
@@ -54,7 +55,6 @@ const Note = () => {
         noteTextTitle,
         activeNote.note_created,
         activeNote.note_id,
-        activeNote.note_modified,
         activeNote.note_owner_name,
         activeNote.note_text,
         activeNote.note_title,
@@ -85,18 +85,13 @@ const Note = () => {
 
     },[noteTextTitle]);
 
-
-
-
-
+    // quill options
     const modules = {
         toolbar: {
             container: "#toolbar",
         },
     };
-
     const formats = [
-        "header",
         "font",
         "size",
         "bold",
@@ -117,6 +112,7 @@ const Note = () => {
     return (
         <div className="activeNote h-100 d-flex flex-column">
 
+            {/* action bar above the editor: add new, delete, etc. */}
             <NotesActionBar
                 updateActiveNote={updateActiveNote}
                 markActiveNoteForSaving={markActiveNoteForSaving}
@@ -125,6 +121,7 @@ const Note = () => {
                 dispatch={dispatch}
             />
 
+            {/* bar with formatting tools */}
             <div id="toolbar" className="ql-toolbar">
                 <span className="ql-formats">
                     <select className="ql-size" defaultValue="normal">
@@ -175,6 +172,7 @@ const Note = () => {
             </div>
 
             {
+                // label with note creation date above the text
                 activeNote && activeNote.note_created
                     ?   <div className="position-absolute editor-note-created w-auto">
                             <div className="border-bottom pl-0"
