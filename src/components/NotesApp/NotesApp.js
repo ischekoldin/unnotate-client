@@ -278,9 +278,9 @@ const NotesApp = ({ location }) => {
         });
     }
 
-    if (location.state.rememberMe) {
+    if (location.state.rememberMe === true) {
         document.cookie = "unnotateRememberMe=true";
-    } else {
+    } else if (location.state.rememberMe === false) {
         document.cookie = "unnotateRememberMe=false";
     }
 
