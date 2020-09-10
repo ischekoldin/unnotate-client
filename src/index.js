@@ -8,16 +8,12 @@ import rootReducer from "./reducers/rootReducer";
 
 import "./scss/custom.scss";
 
-let store;
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 25 });
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 25 });
 
-    store = createStore(rootReducer, composeEnhancers());
-} else {
-    store = createStore(rootReducer);
-}
+    const store = createStore(rootReducer, composeEnhancers && composeEnhancers());
+
 
 
 
