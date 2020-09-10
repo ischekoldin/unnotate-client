@@ -113,7 +113,8 @@ const LogIn = () => {
                     pathname: '/notes',
                     state: {
                         token: response.data.accessToken,
-                        username: nameValue
+                        username: nameValue,
+                        rememberMe: rememberMe
                     }
                 });
             } catch (err) {

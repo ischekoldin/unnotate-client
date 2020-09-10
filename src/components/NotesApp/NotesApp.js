@@ -278,6 +278,13 @@ const NotesApp = ({ location }) => {
         });
     }
 
+    if (location.state.rememberMe) {
+        document.cookie = "unnotateRememberMe=true";
+    } else {
+        document.cookie = "unnotateRememberMe=false";
+    }
+
+
     useEffect(() => {
         if (addNote) {
             addNewNote();
