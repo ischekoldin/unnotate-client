@@ -126,7 +126,7 @@ const LogIn = () => {
     const rememberMe = document.cookie
         .replace(/(?:(?:^|.*;\s*)unnotateRememberMe\s*=\s*([^;]*).*$)|^.*$/, "$1");
     console.info(rememberMe);
-    if (rememberMe && tryCookieLogin) {
+    if (rememberMe) {
         refreshToken().then(
             (newAccessToken) => {
                 if (newAccessToken) {
@@ -140,7 +140,7 @@ const LogIn = () => {
                     });
                 }
             }
-        ).catch(setTryCookieLogin(false));
+        ).catch();
     }
 
     // spew some errors in dev environment
