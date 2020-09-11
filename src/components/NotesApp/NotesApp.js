@@ -217,6 +217,8 @@ const NotesApp = ({ location }) => {
 
 
 
+
+
     const saveActiveNote = useCallback(async () => {
 
         const CONFIG_SAVE_ACTIVE_NOTE = {
@@ -245,6 +247,10 @@ const NotesApp = ({ location }) => {
 
     const logOut = useCallback(async () => {
 
+        const deleteCookie = (name) => {
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        };
+
         const CONFIG_LOGOUT = {
             method: 'delete',
             url: `${ENDPOINT}/logout`,
@@ -256,6 +262,7 @@ const NotesApp = ({ location }) => {
 
         try {
             await axios(CONFIG_LOGOUT);
+            deleteCookie('unnotateRememberMe');
             dispatch({
                 type: 'auth/logout',
                 payload: false
@@ -278,11 +285,6 @@ const NotesApp = ({ location }) => {
         });
     }
 
-    if (location.state.rememberMe === true) {
-        document.cookie = "unnotateRememberMe=true";
-    } else if (location.state.rememberMe === false) {
-        document.cookie = "unnotateRememberMe=false";
-    }
 
 
     useEffect(() => {

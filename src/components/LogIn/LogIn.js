@@ -109,12 +109,18 @@ const LogIn = () => {
                     type: 'user/set',
                     payload: nameValue
                 });
+
+                if (rememberMeValue) {
+                    let date = new Date();
+                    date.setTime(date.setTime(date.getTime()+(14*24*60*60*1000)));
+                    document.cookie = `unnotateRememberMe=true; expires=${date}`;
+                }
+
                 history.push({
                     pathname: '/notes',
                     state: {
                         token: response.data.accessToken,
                         username: nameValue,
-                        rememberMe: rememberMe
                     }
                 });
             } catch (err) {
