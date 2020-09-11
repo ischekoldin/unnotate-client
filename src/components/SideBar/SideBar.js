@@ -91,7 +91,8 @@ const SideBar = ({location}) => {
             {
                 // show and hide change password dialogue
                 isChangePasswordDialogueShown
-                ?   <ChangePasswordForm setIsChangePasswordDialogueShown={setIsChangePasswordDialogueShown} />
+                ?   <ChangePasswordForm setIsChangePasswordDialogueShown={setIsChangePasswordDialogueShown}
+                                        location={location} />
                 :   null
             }
         </div>

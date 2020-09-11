@@ -12,7 +12,6 @@ const LogIn = () => {
 
 
     const ENDPOINT = useSelector(state => state.endpoint);
-    const [tryCookieLogin, setTryCookieLogin] = useState(true);
     const [isRegisterForm, setIsRegisterForm] =useState(false);
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');

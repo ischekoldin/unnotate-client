@@ -1,11 +1,23 @@
 import React, {useState} from "react";
 import "./ChangePasswordForm.css";
+import axios from "axios";
+import {useSelector} from "react-redux";
 
-const ChangePasswordForm = ({setIsChangePasswordDialogueShown}) => {
+const ChangePasswordForm = ({setIsChangePasswordDialogueShown, location}) => {
 
     const [oldPassword, setOldPassword] = useState(' ');
     const [newPassword, setNewPassword] = useState('');
     const [repeatNewPassword, setRepeatNewPassword] = useState('');
+    const name = location.state && location.state.username;
+
+    const ENDPOINT = useSelector(state => state.endpoint);
+
+    const CONFIG_CHANGE_PASSWORD = {
+        method: 'post',
+        url: `${ENDPOINT}/auth/change_password`,
+        headers: { 'Content-Type': 'application/json' },
+        data: { user: name, oldPassword: oldPassword, newPassword: newPassword }
+    };
 
 
     const handleChange = (event) => {
@@ -28,10 +40,12 @@ const ChangePasswordForm = ({setIsChangePasswordDialogueShown}) => {
         }
     };
 
+
+    // TODO: barebone, implement feedback
     const handleClick = (event) => {
         const buttonClicked = event.currentTarget.id;
         if (buttonClicked === "changePasswordButton") {
-
+            axios(CONFIG_CHANGE_PASSWORD).then(setIsChangePasswordDialogueShown(false));
         } else if (buttonClicked === "closePasswordFormButton") {
             setIsChangePasswordDialogueShown(false);
         }

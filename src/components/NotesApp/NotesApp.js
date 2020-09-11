@@ -53,7 +53,7 @@ const NotesApp = ({ location }) => {
     },[username, dispatch, location.state.username]);
 
 
-    const refreshToken = useCallback (async () => {
+    const refreshAccessToken = useCallback (async () => {
 
         try {
             const newAccessToken = await axios(CONFIG_REFRESH_TOKEN);
@@ -122,8 +122,6 @@ const NotesApp = ({ location }) => {
 
         } catch (err) {
             if (err.response && err.response.status === 403) {
-                //console.log('Catch');
-
                 dispatch({
                     type: 'auth/tokenRefreshRequired',
                     payload: true
@@ -179,7 +177,7 @@ const NotesApp = ({ location }) => {
 
     useEffect(() => {
         if (isTokenRefreshRequired) {
-            refreshToken();
+            refreshAccessToken();
         }
     },[isTokenRefreshRequired]);
 
@@ -213,10 +211,6 @@ const NotesApp = ({ location }) => {
         notesUpdateRequired,
         ]
     );
-
-
-
-
 
 
     const saveActiveNote = useCallback(async () => {
@@ -317,7 +311,7 @@ const NotesApp = ({ location }) => {
     },[logout, logOut]);
 
     if (!token) {
-        refreshToken().then(history.push('/notes')).catch(history.push('/'));
+        refreshAccessToken().then(history.push('/notes')).catch(history.push('/'));
 
     }
 
