@@ -18,6 +18,7 @@ const App = () => {
     } else {
         dispatch({
             type: 'backend/endpoint',
+            // adjust this to match the backend endpoint you use
             payload: "https://unnotate-server.herokuapp.com"
         });
     }
