@@ -92,17 +92,14 @@ const LogIn = () => {
         if (isRegisterForm) {
 
             response = await axios(CONFIG_SIGNUP);
-
-
             if (typeof response === "string") {
                 setFeedback(...feedback, response);
             }
-
             setIsRegisterForm(!isRegisterForm);
 
         } else {
-
             try {
+                //log in and set username in Redux store
                 response = await axios(CONFIG_LOGIN);
                 dispatch({
                     type: 'user/set',
@@ -131,7 +128,6 @@ const LogIn = () => {
     // check if rememberMe option has been set to true and try to get a new access token
     const rememberMe = document.cookie
         .replace(/(?:(?:^|.*;\s*)unnotateRememberMe\s*=\s*([^;]*).*$)|^.*$/, "$1");
-    console.info(rememberMe);
     if (rememberMe) {
         refreshToken().then(
             (newAccessToken) => {
