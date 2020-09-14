@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./LoginAndRegisterForm.scss";
+
 const LoginAndRegisterForm = (
     {
         isRegisterForm,
@@ -20,7 +22,7 @@ const LoginAndRegisterForm = (
 
     if (isRegisterForm) {
         form = <>
-            Register
+            <span className="text-center font-weight-bold">Register</span>
             <form className="form card-body" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">name</label>
@@ -49,7 +51,7 @@ const LoginAndRegisterForm = (
         </>;
     } else {
         form = <>
-            Log in
+            <span className="text-center card-header font-weight-bold">Log in</span>
             <form className="form card-body" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">name</label>
@@ -65,7 +67,7 @@ const LoginAndRegisterForm = (
 
                 <div className="form-group d-flex align-items-center justify-content-between">
                     <label className="form-check-label mr-3" htmlFor="rememberMe">remember me</label>
-                    <input className="custom-checkbox mr-auto" value={rememberMeValue}
+                    <input className="mr-auto" value={rememberMeValue}
                            onChange={handleChange} id="rememberMe" type="checkbox" />
                 </div>
 

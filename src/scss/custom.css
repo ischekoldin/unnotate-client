@@ -9911,4 +9911,31 @@ body {
   overflow: hidden;
 }
 
+.form #password {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .sideBar-col {
+    height: fit-content;
+    width: 100vw;
+  }
+
+  .side-bar-container {
+    flex: 0 0 2.1%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .sideBar-col {
+    flex: 0 0 2.1%;
+  }
+
+  .side-bar-container {
+    height: fit-content;
+  }
+}
+.card-header {
+  background-color: rgba(70, 54, 187, 0.29);
+}
+
 /*# sourceMappingURL=custom.css.map */

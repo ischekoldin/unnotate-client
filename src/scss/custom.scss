@@ -16,10 +16,12 @@ $font-family-sans-serif: 'SF UI Text', 'Roboto', sans-serif;
 }
 
 .btn-outline-light:hover{
-  color: #4636bb;
+  color: $primary;
   border: none;
 }
 
 body {
   overflow: hidden;
 }
+
+@import "../components/LogIn/LogIn";

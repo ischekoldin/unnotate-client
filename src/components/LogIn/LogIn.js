@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import SideBar from "../SideBar/SideBar";
 import "./LogIn.scss";
+
+import SideBar from "../SideBar/SideBar";
+
 import LoginAndRegisterForm from "./LoginAndRegisterForm/LoginAndRegisterForm";
 import ModalDialogue from "./ModalDialogue/ModalDialogue";
 
@@ -159,8 +161,7 @@ const LogIn = () => {
 
                 {feedback.length > 0 ? <ModalDialogue messages={feedback} /> : null }
 
-                <div className="col-auto ml-auto mb-auto mr-auto mt-sm-0 mt-0 mt-md-auto">
-                    <div className="card p-3 border border align-self-center">
+                <div className="card col-auto ml-auto mb-auto mr-auto mt-sm-0 mt-0 mt-md-auto">
                         <LoginAndRegisterForm
                             isRegisterForm={isRegisterForm}
                             setIsRegisterForm={setIsRegisterForm}
@@ -171,7 +172,6 @@ const LogIn = () => {
                             passwordValue={passwordValue}
                             rememberMeValue={rememberMeValue}
                         />
-                    </div>
                 </div>
             </div>
         </div>

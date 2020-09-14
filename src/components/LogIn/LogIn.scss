@@ -1,52 +1,7 @@
 
-.loginScreenContainer {
-    font-family: 'SF UI Text', 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-}
-
-
-
-/*.loginContainer {*/
-/*    display: grid;*/
-/*    place-items: center;*/
-/*    background-color: #CFDBD5;*/
-/*    color: #242423;*/
-/*    margin-top: auto;*/
-/*    height: 96.5vh;*/
-/*    width: 100vw;*/
-/*}*/
-
-
-
-
 .form #password {
     margin-bottom: 0;
 }
-
-//.formCheckbox {
-//    width: 1em;
-//    height: 1em;
-//    margin: 0 0 0 2em;
-//}
-
-
-
-
-
-
-
-//.form {
-//    display: flex;
-//    flex-direction: column;
-//}
-// small
-//@media screen and (max-width: 768px) {
-//    .sideBar-col {
-//        width: 100vw;
-//    }
-//}
 
 @media screen and (max-width: 768px) {
     .sideBar-col {
@@ -67,3 +22,5 @@
         height: fit-content;
     }
 }
+
+@import "LoginAndRegisterForm/LoginAndRegisterForm";

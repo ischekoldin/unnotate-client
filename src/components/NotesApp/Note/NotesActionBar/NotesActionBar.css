@@ -1,7 +1,3 @@
-#addNoteBtn {
-  background-color: #4636bb;
-}
-
 @media screen and (max-width: 768px) {
   #addNoteBtn {
     height: 1rem;
@@ -9,6 +5,10 @@
   }
 }
 @media screen and (max-width: 768px) {
+  .side-bar {
+    height: 3rem;
+  }
+
   #addNoteBtn {
     height: 3rem;
     width: 3.7rem;
