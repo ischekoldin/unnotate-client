@@ -22,7 +22,7 @@ const LoginAndRegisterForm = (
 
     if (isRegisterForm) {
         form = <>
-            <span className="text-center font-weight-bold">Register</span>
+            <div className="text-center font-weight-bold mt-3">Register</div>
             <form className="form card-body" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">name</label>
@@ -51,7 +51,7 @@ const LoginAndRegisterForm = (
         </>;
     } else {
         form = <>
-            <span className="text-center card-header font-weight-bold">Log in</span>
+            <div className="text-center font-weight-bold mt-3">Log in</div>
             <form className="form card-body" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">name</label>

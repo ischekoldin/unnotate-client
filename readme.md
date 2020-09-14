@@ -11,6 +11,9 @@ The frontend is built using:
 
 git clone https://github.com/ischekoldin/unnotate-client.git
 
+[Demo](https://unnotate-client.herokuapp.com)
+Heroku servers go idle after 30 minutes of inactivity. So the first start of frontend and backend is slow.
+
 ## Usage
 
 ```

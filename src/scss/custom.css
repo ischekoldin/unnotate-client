@@ -9931,6 +9931,7 @@ body {
   }
 
   .side-bar-container {
+    flex: 0 0 2.1%;
     height: fit-content;
   }
 }

@@ -162,6 +162,7 @@ const LogIn = () => {
                 {feedback.length > 0 ? <ModalDialogue messages={feedback} /> : null }
 
                 <div className="card col-auto ml-auto mb-auto mr-auto mt-sm-0 mt-0 mt-md-auto">
+                    <div style={{width: "17em"}}>
                         <LoginAndRegisterForm
                             isRegisterForm={isRegisterForm}
                             setIsRegisterForm={setIsRegisterForm}
@@ -172,6 +173,7 @@ const LogIn = () => {
                             passwordValue={passwordValue}
                             rememberMeValue={rememberMeValue}
                         />
+                    </div>
                 </div>
             </div>
         </div>
