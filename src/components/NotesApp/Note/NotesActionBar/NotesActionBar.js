@@ -51,8 +51,8 @@ const NotesActionBar = (
 
     return (
 
-            <div className="d-flex flex-row flex-grow-1 side-bar">
-                <div className="d-flex align-items-center side-bar">
+            <div className="d-flex flex-row flex-grow-1 notes-action-bar">
+                <div className="d-flex align-items-center notes-action-bar">
 
                     {isScreenNarrow
                         ?   <button className="openSidePanelBtn btn btn-secondary"
@@ -62,15 +62,15 @@ const NotesActionBar = (
                         :   ""
                     }
 
-                    <button type="button" className="btn btn-outline-light  bg-transparent pr-2" onClick={editorUndo}>
+                    <button type="button" className="btn btn-outline-light pr-2" onClick={editorUndo}>
                         <i className="far fa-undo" />
                     </button>
-                    <button type="button" className="btn btn-outline-light bg-transparent" onClick={editorRedo}>
+                    <button type="button" className="btn btn-outline-light" onClick={editorRedo}>
                         <i className="far fa-redo" />
                     </button>
 
                 </div>
-                <div className="ml-auto d-flex align-items-center side-bar">
+                <div className="ml-auto d-flex align-items-center notes-action-bar">
 
                     <div className="d-flex justify-content-end align-content-center m-0">
                         <div className="">
@@ -80,7 +80,7 @@ const NotesActionBar = (
                                 handleSaveNote={handleSaveNote}
                             />
 
-                            <button className="btn m-0 pt-2 h-100 btn-just-icon btn-outline-light bg-transparent"
+                            <button className="btn btn-outline-light"
                                     type="button"
                                     onClick={handleDeleteNote}>
 
@@ -89,7 +89,7 @@ const NotesActionBar = (
 
                         </div>
 
-                        <button className="btn btn-primary ml-2 mr-1"
+                        <button className="btn btn-primary p-0"
                                 id="addNoteBtn"
                                 type="button"
                                 onClick={handleAddNewNote}>

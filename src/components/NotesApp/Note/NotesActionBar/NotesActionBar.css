@@ -4,8 +4,8 @@
     width: 1rem;
   }
 }
-@media screen and (max-width: 768px) {
-  .side-bar {
+@media screen and (min-width: 768px) {
+  .notes-action-bar {
     height: 3rem;
   }
 

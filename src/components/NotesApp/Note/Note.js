@@ -7,7 +7,7 @@ import {useMediaQuery} from "react-responsive/src";
 
 import NotesActionBar from "./NotesActionBar/NotesActionBar";
 import "./quill.snow.css";
-import "./Note.css"
+import "./Note.scss"
 
 const Note = () => {
 

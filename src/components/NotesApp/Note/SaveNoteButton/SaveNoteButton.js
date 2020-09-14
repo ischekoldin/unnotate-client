@@ -8,13 +8,13 @@ const SaveNoteButton = ({handleSaveNote, updateActiveNote}) => {
             {
                 updateActiveNote
 
-                    ?   <button className="btn m-0 pt-2 h-100 btn-just-icon btn-outline-light bg-transparent" type="button">
+                    ?   <button className="btn m-0 h-100  btn-outline-light" type="button">
                             <div className="spinner-grow" role="status"  style={{ width: "1em", height: "1em" }} >
                                 <span className="sr-only">...</span>
                             </div>
                         </button>
 
-                    :   <button className="btn m-0 pt-2 h-100 btn-just-icon btn-outline-light bg-transparent"
+                    :   <button className="btn m-0 h-100 btn-outline-light"
                                 type="button"
                                 onClick={handleSaveNote}>
 
