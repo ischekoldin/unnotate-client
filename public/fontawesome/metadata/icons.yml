@@ -10102,7 +10102,7 @@ construction:
 container-storage:
   changes:
     - 5.0.9
-  label: Container Storage
+  label: MainAreaContainer Storage
   search:
     terms:
       - archive
@@ -37185,7 +37185,7 @@ truck:
 truck-container:
   changes:
     - 5.0.9
-  label: Truck Container
+  label: Truck MainAreaContainer
   search:
     terms:
       - cargo

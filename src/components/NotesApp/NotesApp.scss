@@ -65,21 +65,31 @@
     width: 19em;
 }
 
-
+.root-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
 
 .sideBar-col {
       flex: 0 0 3.5%;
 }
 
-@media screen and (max-width: 786px) {
-    .sideBarContainer {
+@media screen and (max-width: 768px) {
+    .side-bar-container {
         height: 2em;
+    }
+    .root-container {
+        flex-direction: column;
     }
 }
 
-@media screen and (min-width: 786px) {
-    .sideBarContainer {
+@media screen and (min-width: 768px) {
+    .side-bar-container {
         height: 100%;
+    }
+    .root-container {
+        flex-direction: row;
     }
 }
 

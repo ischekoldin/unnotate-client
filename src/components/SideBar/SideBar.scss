@@ -1,41 +1,17 @@
 $secondary: rgba(145, 111, 153, 0.2);
 
 
-.sideBar {
-    //height: 100%;
-    //width: 100%;
+.side-bar {
+    z-index: 200;
     background: linear-gradient(#9665fc, #3c2bb0);
-    h4 {
-        font-size: 1.2em;
-        color: #fff;
-
-    }
 }
 
-
-.sideBarItem {
-
-}
-
-
-.header h4 {
-    margin: 0.1em 3.5em 0 0;
-    color:white;
-}
-
-.logo {
+.side-bar-item {
     color: white;
 }
 
-.logo span {
-    color: #EDBB00;
-}
 
-#arrowDownIcon {
-    margin-left: 0.5em;
-}
-
-.userMenu {
+.user-menu {
     text-align: center;
     z-index: 100;
     display: flex;
@@ -50,15 +26,17 @@ $secondary: rgba(145, 111, 153, 0.2);
     box-shadow: rgba(165, 169, 177, 0.7) 0 0 20px 0;
 }
 
-.userMenuButton {
-    cursor: pointer;
-}
-
-.userMenu :not(:last-child) {
+.user-menu :not(:last-child) {
     border-bottom: 1px solid rgba(165, 169, 177, 0.5);
 }
 
-.userMenuEntry {
+.user-menu-button {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-menu-entry {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -69,72 +47,78 @@ $secondary: rgba(145, 111, 153, 0.2);
     cursor: pointer;
 }
 
-.userMenuEntry:hover {
+.user-menu-entry:hover {
     background-color: $secondary;
-}
-
-.rotate-counter-clockwise {
-    transform: rotateZ(-90deg);
-}
-
-.rotate-clockwise {
-    transform: rotateZ(90deg);
 }
 
 
 @media screen and (max-width: 768px) {
 
-    #logo {
-        position: relative;
-        top: 0.2em;
-        margin-left: 1.6rem;
-    }
-
-    .sideBar {
+    .side-bar {
         width: 100vw;
-        background: linear-gradient(0.25turn, #9665fc, #3c2bb0);
+        height: 2.5em;
+        background: linear-gradient(0.25turn, #9665fc, #864cff);
     }
 
-    .userMenuButton {
+    .user-menu-button {
         position: relative;
-        top: 0.2em;
     }
 
-    .userMenu {
+    .user-menu {
         left: auto;
         bottom: auto;
         top: 2em;
         right: 1em;
     }
 
+    .user-menu-button-container {
+        position: absolute;
+        top: 0;
+        right: 0.5rem;
+        padding-bottom: 0.3rem;
+    }
+
+    .logo-container {
+        position: relative;
+        top: 0;
+        left: 0.5rem;
+        padding-bottom: 0.3rem;
+    }
+
 }
 
 
 @media screen and (min-width: 768px) {
-    .sideBar {
+
+    .side-bar {
         width: 2.5em;
         height: 100vh;
     }
 
-    .sideBarItem {
-        transform: rotateZ(-90deg);
+    .side-bar-item {
+        //transform: rotateZ(-90deg);
     }
 
-    .user-menu-col h4 {
-        margin-bottom: 3rem;
-    }
-
-    .userMenu {
+    .user-menu {
+        top: auto;
         right: auto;
         left: 0;
+    }
+
+    .user-menu-button-container {
+        transform: rotateZ(-90deg);
+        position: relative;
+        top: calc(100% - 5rem);
+    }
+
+    .logo-container {
+        transform: rotateZ(-90deg);
+        position: relative;
+        top: 4rem;
     }
 
 }
 
 .text-nowrap {
     white-space: nowrap;
-}
-
-.sideBar-col {
-    flex: 0 0 4.5%;
 }

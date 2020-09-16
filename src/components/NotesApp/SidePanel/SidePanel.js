@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-import "./SIdePanel.css";
+import "./SidePanel.css";
 import {useMediaQuery} from "react-responsive/src";
 import moment from "moment";
 
@@ -147,28 +147,30 @@ const SidePanel = () => {
 
 
     const formatNote = (note) =>
-
+        // the "note" entry can either be
         note.dateSegment && note.dateSegment
-            ?   <div key={Math.random()} className="row">
-                <div className="col">
-                    <div className="border pl-3 pt-2" style={{ backgroundColor: "rgb(221 221 229 / 50%)", height: "2.6em" }}>{note.dateSegment}</div>
-                </div>
-            </div>
-            :   <div className={
-                /*highlight activeNote*/
+
+            // a segment with month and date
+            ?   <li key={note.dateSegment} className="d-flex flex-grow-1 notes_list__date_segment">
+                    <span className="pl-3 pt-2">{note.dateSegment}</span>
+                </li>
+
+            // or an actual note
+            :   <li className={
+                // highlight activeNote
                 activeNote.note_id === note.entry.note_id
-                    ? "sidePanelNoteWrapper active"
-                    : "sidePanelNoteWrapper"
+                    ? "side-panel-note-wrapper active"
+                    : "side-panel-note-wrapper"
             }
                      key={note.entry.note_id}>
 
-                <div className="sidePanelNote d-flex flex-row"
+                <div className="side-panel-note d-flex flex-row"
                      data-id={note.entry.note_id}
                      onClick={handleClick}>
 
                     {/*title of the note*/}
                     <div className="col-3 pt-0 h-100 border">
-                        <div className="noteModified p-2 pt-3 pb-3 m-0 row">
+                        <div className="note-modified p-2 pt-3 pb-3 m-0 row">
                             <span className="m-0 date-day">{moment(note.entry.note_modified).format('D')}</span>
                             <span className="date-day-of-week">{moment(note.entry.note_modified).format('ddd').toUpperCase()}</span>
                         </div>
@@ -176,23 +178,23 @@ const SidePanel = () => {
                     <div className="col-9 border pl-3 pr-3 pt-2 pb-0">
 
                         <div className="row m-0">
-                            <div className="noteTitle">{note.entry.note_title
+                            <div className="note-title">{note.entry.note_title
                             //strip html tags
                                 .replace(/<[^>]+>/g, "").substring(0, 21)}</div>
                         </div>
 
                         <div className="row m-0">
-                        <span className="noteText" style={{ wordwrap: "break-all" }}>{note.entry.note_text
-                        //strip html tags
-                            .replace(/<[^>]+>/g, "").substring(0, 35)}...</span>
+                            <span className="note-text" style={{ wordwrap: "break-all" }}>{note.entry.note_text
+                            //strip html tags
+                                .replace(/<[^>]+>/g, "").substring(0, 35)}...</span>
                         </div>
                     </div>
                 </div>
-            </div>;
+            </li>;
 
 
     return (
-        <div className="sidePanel h-100">
+        <div className="side-panel h-100">
 
             {
                 // show either a search box
@@ -201,7 +203,7 @@ const SidePanel = () => {
                             <div className="row">
                                 <input
                                     type="text"
-                                    className="notesSearch col-8 p-0"
+                                    className="notes-search col-8 p-0"
                                     onChange={handleSearch}
                                     onBlur={() => setIsSearchShown(!isSearchShown)}
                                     placeholder="Search notes" />
@@ -209,13 +211,13 @@ const SidePanel = () => {
                             </div>
                         </div>
 
-                    // of a "sort by" dropdown
+                    // of a "sort by" dropdown list
                     :   <div className="container mt-1 mb-2">
                             <div className="row">
                                 <div className="col-9">
                                     <div className="dropdown">
                                         <button className="btn dropdown-toggle" type="button"
-                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                id="dropdown-menu-button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
                                             Sort by: {sortBy}
                                         </button>
@@ -234,14 +236,14 @@ const SidePanel = () => {
             }
 
             {/*actual list of notes*/}
-            <div className="container mr-0 pr-0 pl-0 mt-1">
-                <div className="row ml-0" style={{ width: "19em" }}>
-                    <div className="col pr-0 pl-0 list-container">
+
+                <div className="ml-0 notes-list-container">
+                    <ul className="pr-0 pl-0 notes-list">
                         {notesToRender && notesToRender.map(note => formatNote(note)) }
-                    </div>
+                    </ul>
                 </div>
 
-            </div>
+
         </div>
     )
 };

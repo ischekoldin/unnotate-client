@@ -5,15 +5,15 @@ import {useMediaQuery} from "react-responsive/src";
 
 import SidePanel from "../SidePanel/SidePanel";
 import Note from "../Note/Note";
-import "./Container.css"
+import "./MainAreaContainer.css"
 
 
-const Container = () => {
+const MainAreaContainer = () => {
     const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
     const isSidePanelOpen = useSelector(state => state.isSidePanelOpen);
 
     return (
-            <div className="mainAreaContainer h-100 p-0">
+            <div className="main-area-container h-100 p-0">
                 <div className="d-flex h-100 w-100">
 
                     {
@@ -29,4 +29,4 @@ const Container = () => {
         )
 };
 
-export default Container;
+export default MainAreaContainer;

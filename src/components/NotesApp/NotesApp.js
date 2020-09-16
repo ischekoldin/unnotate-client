@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import Container from "./Container/Container";
+import MainAreaContainer from "./MainAreaContainer/MainAreaContainer";
 import SideBar from "../SideBar/SideBar";
 import moment from "moment";
 
@@ -317,15 +317,10 @@ const NotesApp = ({ location }) => {
 
     return (
 
-            <div className="row no-gutters h-100">
-                <div className="col-md-1 col-sm-12 sideBarContainer" style={{flex: "0 0 2.1%"}}>
+            <div className="root-container">
                     <SideBar location={location} />
-                </div>
-                <div className="col-md-9 col-sm-12 pl-0 ml-0 h-100 flex-grow-1">
-                    <Container />
-                </div>
+                    <MainAreaContainer />
             </div>
-
 
     )
 
