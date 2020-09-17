@@ -2,6 +2,7 @@ $secondary: rgba(145, 111, 153, 0.2);
 
 
 .side-bar {
+    display: flex;
     z-index: 200;
     background: linear-gradient(#9665fc, #3c2bb0);
 }
@@ -57,7 +58,7 @@ $secondary: rgba(145, 111, 153, 0.2);
     .side-bar {
         width: 100vw;
         height: 2.5em;
-        background: linear-gradient(0.25turn, #9665fc, #864cff);
+        background: linear-gradient(0.25turn, #864cff, #4636bb);
     }
 
     .user-menu-button {
@@ -72,9 +73,8 @@ $secondary: rgba(145, 111, 153, 0.2);
     }
 
     .user-menu-button-container {
-        position: absolute;
-        top: 0;
-        right: 0.5rem;
+        margin-right: 0.7rem;
+        margin-left: auto;
         padding-bottom: 0.3rem;
     }
 
@@ -91,12 +91,9 @@ $secondary: rgba(145, 111, 153, 0.2);
 @media screen and (min-width: 768px) {
 
     .side-bar {
+        flex-direction: column;
         width: 2.5em;
         height: 100vh;
-    }
-
-    .side-bar-item {
-        //transform: rotateZ(-90deg);
     }
 
     .user-menu {
@@ -107,8 +104,9 @@ $secondary: rgba(145, 111, 153, 0.2);
 
     .user-menu-button-container {
         transform: rotateZ(-90deg);
-        position: relative;
-        top: calc(100% - 5rem);
+        margin-top: auto;
+        margin-bottom: 1.5rem;
+
     }
 
     .logo-container {

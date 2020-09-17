@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from "react";
-
-import "./SideBar.scss";
+import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive/src";
 import {useDispatch} from "react-redux";
 
 import ChangePasswordForm from "./ChangePasswordForm/ChangePasswordForm";
 
-import {useMediaQuery} from "react-responsive/src";
+import "./SideBar.scss";
 
 
 const SideBar = ({location}) => {
@@ -13,7 +12,7 @@ const SideBar = ({location}) => {
     const [isUserMenuShown, setIsUserMenuShown] = useState(false);
     const [isChangePasswordDialogueShown, setIsChangePasswordDialogueShown] = useState(false);
     const dispatch = useDispatch();
-    const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
+    const isScreenNarrow = useMediaQuery({query: "(max-width: 768px)"});
 
     const handleUserMenuButtonClick = () => {
         setIsUserMenuShown(!isUserMenuShown);

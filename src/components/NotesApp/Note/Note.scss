@@ -10,6 +10,7 @@
 }
 
 #toolbar {
+    z-index: 10;
     background-color: white;
 }
 
@@ -48,7 +49,8 @@
 
 @media screen and (max-width: 768px) {
     .editor-note-created {
-        top: 5.7rem;
+        z-index: 9;
+        margin-top: 5.7rem;
         margin-left: 1.5rem;
     }
     .ql-container {
@@ -59,7 +61,7 @@
 
 @media screen and (min-width: 768px) {
     .editor-note-created {
-        margin-top: 6rem;
+        margin-top: 6.2rem;
         margin-left: 4rem;
     }
     .ql-container {

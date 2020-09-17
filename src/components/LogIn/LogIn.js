@@ -81,7 +81,7 @@ const LogIn = () => {
         } catch (err) {
             errors.push({place:"refreshToken function", message: err.message});
         }
-    },[CONFIG_REFRESH_TOKEN], errors);
+    },[CONFIG_REFRESH_TOKEN, errors]);
 
 
 

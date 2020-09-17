@@ -83,7 +83,7 @@ const Note = () => {
         }, 3000);
         return () => clearTimeout(timeout);
 
-    },[noteTextTitle]);
+    },[noteTextTitle, markActiveNoteForSaving]);
 
     // quill options
     const modules = {

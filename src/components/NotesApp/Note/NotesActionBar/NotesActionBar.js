@@ -54,11 +54,14 @@ const NotesActionBar = (
             <div className="d-flex flex-row flex-grow-1 notes-action-bar">
                 <div className="d-flex align-items-center notes-action-bar">
 
-                    {isScreenNarrow
+                    {
+                        isScreenNarrow
+
                         ?   <button className="openSidePanelBtn btn btn-secondary"
                                     onClick={handleSidePanelOpen}>
                             <i className="far fa-arrow-left" />
                         </button>
+
                         :   ""
                     }
 
@@ -90,7 +93,7 @@ const NotesActionBar = (
                         </div>
 
                         <button className="btn btn-primary p-0"
-                                id="addNoteBtn"
+                                id="add-note-btn"
                                 type="button"
                                 onClick={handleAddNewNote}>
                             <i className="far fa-plus" />

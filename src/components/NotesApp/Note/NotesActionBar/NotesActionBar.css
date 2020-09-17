@@ -1,5 +1,5 @@
 @media screen and (max-width: 768px) {
-  #addNoteBtn {
+  #add-note-btn {
     height: 1rem;
     width: 1rem;
   }
@@ -9,7 +9,7 @@
     height: 3rem;
   }
 
-  #addNoteBtn {
+  #add-note-btn {
     height: 3rem;
     width: 3.7rem;
   }

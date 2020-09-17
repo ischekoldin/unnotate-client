@@ -57,7 +57,7 @@ const NotesApp = ({ location }) => {
 
         try {
             const newAccessToken = await axios(CONFIG_REFRESH_TOKEN);
-            //await console.info(`New token ${newAccessToken}`);
+
             await setToken(newAccessToken.data.accessToken);
             await dispatch({
                 type: 'auth/tokenRefreshRequired',
@@ -72,12 +72,30 @@ const NotesApp = ({ location }) => {
 
 
      const fetchNotes = useCallback(async () => {
+         // we don't need updates during these because changes have already been made
+         // on both backend and frontend
          if (!addNote && !deleteNote && !updateActiveNote) {
 
              try {
-                 //console.log('try fetch');
                  const notesRawData = await axios(CONFIG_FETCH_NOTES);
-                 return notesRawData.data.rows;
+
+                 const result = notesRawData.data.rows;
+
+                 if (result) {
+                     dispatch({
+                         type: 'notes/fetch',
+                         payload: result
+                     });
+
+                 }
+
+                 setTimeout(() => {
+                     dispatch({
+                         type: 'notes/updateActiveNote',
+                         payload: false
+                     })
+                 }, 1000);
+
 
              } catch (err) {
                   if (err.response && err.response.status === 403) {
@@ -179,29 +197,11 @@ const NotesApp = ({ location }) => {
         if (isTokenRefreshRequired) {
             refreshAccessToken();
         }
-    },[isTokenRefreshRequired]);
+    },[isTokenRefreshRequired, refreshAccessToken]);
 
 
     useEffect(() => {
-        fetchNotes().then((result) => {
-            // only fetch notes from backend if not syncing local state of the editor with
-            // its state in Redux
-            if (result && !updateActiveNote) {
-                dispatch({
-                    type: 'notes/fetch',
-                    payload: result
-                });
-
-            }
-
-            setTimeout(() => {
-                dispatch({
-                    type: 'notes/updateActiveNote',
-                    payload: false
-                })
-            }, 1000);
-
-        });
+        fetchNotes();
      },
         [
         deleteNote,
@@ -229,10 +229,7 @@ const NotesApp = ({ location }) => {
 
 
         } catch (err) {
-            // dispatch({
-            //     type: 'notes/updateActiveNote',
-            //     payload: false
-            // });
+
             console.error(err.message);
         }
 
@@ -272,12 +269,6 @@ const NotesApp = ({ location }) => {
     }, [token, ENDPOINT, dispatch, history]);
 
 
-    if (!isScreenNarrow) {
-        dispatch({
-            type: 'responsiveness/isNoteOpen',
-            payload: true
-        });
-    }
 
 
 
@@ -294,7 +285,6 @@ const NotesApp = ({ location }) => {
         }
     },[deleteNote, deleteActiveNote]);
 
-
     useEffect(() => {
         // check if activeNote has been changed by editing a note,
         // not by switching to another one which would overwrite one by the other
@@ -310,9 +300,18 @@ const NotesApp = ({ location }) => {
         }
     },[logout, logOut]);
 
+
+
     if (!token) {
         refreshAccessToken().then(history.push('/notes')).catch(history.push('/'));
 
+    }
+
+    if (!isScreenNarrow) {
+        dispatch({
+            type: 'responsiveness/isNoteOpen',
+            payload: true
+        });
     }
 
     return (

@@ -17,7 +17,7 @@ const SidePanel = () => {
 
 
 
-    const handleClick = (event) => {
+    const handleNoteClick = (event) => {
         const note_id = parseInt(event.currentTarget.dataset.id);
         const noteToSetActive = notes.find(note => note.note_id === note_id);
 
@@ -116,6 +116,11 @@ const SidePanel = () => {
     };
 
 
+    const toggleSearchBox = () => {
+        setIsSearchShown(!isSearchShown);
+    };
+
+
     let notesToRender;
 
     // check if there is a search filter
@@ -166,7 +171,7 @@ const SidePanel = () => {
 
                 <div className="side-panel-note d-flex flex-row"
                      data-id={note.entry.note_id}
-                     onClick={handleClick}>
+                     onClick={handleNoteClick}>
 
                     {/*title of the note*/}
                     <div className="col-3 pt-0 h-100 border">
@@ -199,38 +204,36 @@ const SidePanel = () => {
             {
                 // show either a search box
                 isSearchShown
-                    ?   <div className="container mt-1 mb-2">
-                            <div className="row">
-                                <input
-                                    type="text"
-                                    className="notes-search col-8 p-0"
-                                    onChange={handleSearch}
-                                    onBlur={() => setIsSearchShown(!isSearchShown)}
-                                    placeholder="Search notes" />
-                                <i className="far fa-search col-auto p-3"/>
+                    ?   <div className="notes-search-container">
+                            <input
+                                type="text"
+                                className="notes-search"
+                                onChange={handleSearch}
+                                onBlur={toggleSearchBox}
+                                placeholder="Search notes" />
+
+                            <div className="search-button-container" onClick={toggleSearchBox}>
+                                <i className="far fa-search"/>
                             </div>
+
                         </div>
 
                     // of a "sort by" dropdown list
-                    :   <div className="container mt-1 mb-2">
-                            <div className="row">
-                                <div className="col-9">
-                                    <div className="dropdown">
-                                        <button className="btn dropdown-toggle" type="button"
-                                                id="dropdown-menu-button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                            Sort by: {sortBy}
-                                        </button>
-                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <div className="dropdown-item" onClick={() => setSortBy('modified')}>Sort by: modified</div>
-                                            <div className="dropdown-item" onClick={() => setSortBy('created')}>Sort by: created</div>
-                                        </div>
-                                    </div>
+                    :   <div className="notes-search-container">
+                            <div className="dropdown">
+                                <button className="btn dropdown-toggle" type="button"
+                                        id="dropdown-menu-button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Sort by: {sortBy}
+                                </button>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div className="dropdown-item" onClick={() => setSortBy('modified')}>Sort by: modified</div>
+                                    <div className="dropdown-item" onClick={() => setSortBy('created')}>Sort by: created</div>
                                 </div>
+                            </div>
 
-                                <div className="col-3" onClick={() => setIsSearchShown(!isSearchShown)}>
-                                    <i className="far fa-search"/>
-                                </div>
+                            <div className="search-button-container" onClick={toggleSearchBox}>
+                                <i className="far fa-search"/>
                             </div>
                         </div>
             }
