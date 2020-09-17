@@ -4,10 +4,12 @@ import ReactQuill from "react-quill";
 import moment from "moment";
 import {useMediaQuery} from "react-responsive/src";
 
-
 import NotesActionBar from "./NotesActionBar/NotesActionBar";
+
 import "./quill.snow.css";
 import "./Note.scss"
+
+
 
 const Note = () => {
 
@@ -19,6 +21,7 @@ const Note = () => {
     const dispatch = useDispatch();
     const isScreenNarrow = useMediaQuery({query: '(max-width: 768px)'});
     const quillRef = useRef();
+
 
 
     // if note is edited, send the new version to Redux store
@@ -65,6 +68,8 @@ const Note = () => {
     ]);
 
 
+
+
     // sync activeNote in global Redux store with local state inside component
     useEffect(() => {
         if (activeNote.note_title) {
@@ -85,12 +90,17 @@ const Note = () => {
 
     },[noteTextTitle, markActiveNoteForSaving]);
 
+
+
+
+
     // quill options
     const modules = {
         toolbar: {
             container: "#toolbar",
         },
     };
+
     const formats = [
         "font",
         "size",
@@ -107,6 +117,8 @@ const Note = () => {
         "align",
         "script"
     ];
+
+
 
 
     return (

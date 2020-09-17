@@ -1,10 +1,11 @@
 import React from "react";
-
 import {useSelector} from "react-redux";
 import {useMediaQuery} from "react-responsive/src";
 
 import SidePanel from "../SidePanel/SidePanel";
 import Note from "../Note/Note";
+
+
 import "./MainAreaContainer.css"
 
 

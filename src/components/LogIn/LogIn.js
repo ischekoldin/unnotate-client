@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import "./LogIn.scss";
-
 import SideBar from "../SideBar/SideBar";
 
 import LoginAndRegisterForm from "./LoginAndRegisterForm/LoginAndRegisterForm";
 import ModalDialogue from "./ModalDialogue/ModalDialogue";
+
+import "./LogIn.scss";
+
 
 const LogIn = () => {
 
@@ -38,7 +39,6 @@ const LogIn = () => {
         data: { name: nameValue, password: passwordValue, rememberMe: rememberMeValue },
         withCredentials: true
     };
-
 
     const CONFIG_SIGNUP = {
         method: 'post',
@@ -94,12 +94,15 @@ const LogIn = () => {
         if (isRegisterForm) {
 
             response = await axios(CONFIG_SIGNUP);
+
             if (typeof response === "string") {
                 setFeedback(...feedback, response);
             }
+
             setIsRegisterForm(!isRegisterForm);
 
         } else {
+
             try {
                 //log in and set username in Redux store
                 response = await axios(CONFIG_LOGIN);
@@ -121,11 +124,14 @@ const LogIn = () => {
                         username: nameValue,
                     }
                 });
+
             } catch (err) {
                 errors.push({place:"handleSubmit function", message: err.message});
             }
         }
     };
+
+
 
     // check if rememberMe option has been set to true and try to get a new access token
     const rememberMe = document.cookie
@@ -147,10 +153,14 @@ const LogIn = () => {
         ).catch();
     }
 
+
+
     // spew some errors in dev environment
     if (ENDPOINT === "http://localhost:5000" && errors.length > 0) {
         console.info(errors);
     }
+
+
 
     return (
         <div className="container-fluid h-100vh p-0">
